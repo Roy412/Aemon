@@ -40,4 +40,3 @@ jspm_packages
 .idea
 config/development.js
 config/test.js
-dist
