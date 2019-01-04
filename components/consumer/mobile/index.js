@@ -6,9 +6,11 @@ import {
   HistoricalPicker,
   PasswordField,
   Picker,
+  PhoneField,
   TextField,
   TimePicker,
   NewAddressField,
+  MultiSelectField,
 } from './form-fields';
 import {
   PrimaryButton,
@@ -34,6 +36,7 @@ const mobile = {
   HistoricalPicker,
   PasswordField,
   Picker,
+  PhoneField,
   TextField,
   TimePicker,
   NewAddressField,
@@ -48,6 +51,7 @@ const mobile = {
   H3,
   Hint, hintTypes,
   Label, labelTypes,
+  MultiSelectField,
 };
 
 export default mobile;
