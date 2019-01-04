@@ -64,6 +64,18 @@ Object.keys(_historicalPicker).forEach(function (key) {
   });
 });
 
+var _multiSelectField = require("./multi-select-field");
+
+Object.keys(_multiSelectField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _multiSelectField[key];
+    }
+  });
+});
+
 var _newAddressField = require("./new-address-field");
 
 Object.keys(_newAddressField).forEach(function (key) {
@@ -96,6 +108,18 @@ Object.keys(_picker).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _picker[key];
+    }
+  });
+});
+
+var _phoneField = require("./phone-field");
+
+Object.keys(_phoneField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _phoneField[key];
     }
   });
 });

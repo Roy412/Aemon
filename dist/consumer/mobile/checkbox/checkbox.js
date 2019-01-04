@@ -72,7 +72,8 @@ function (_FormField) {
       }, _react.default.createElement("input", {
         type: "checkbox",
         checked: this.checked,
-        onChange: this.onChange
+        onChange: this.onChange,
+        name: this.props.name
       }), this.label);
     }
   }, {

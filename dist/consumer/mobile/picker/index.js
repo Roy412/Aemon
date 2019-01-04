@@ -83,19 +83,17 @@ function (_FormField) {
   }, {
     key: "select",
     get: function get() {
-      var _this2 = this;
-
       var _this$props$options = this.props.options,
           options = _this$props$options === void 0 ? [] : _this$props$options;
       return _react.default.createElement("select", {
-        onChange: this.props.onChange
+        onChange: this.props.onChange,
+        value: this.props.value
       }, options.map(function (_ref, i) {
         var label = _ref.label,
             value = _ref.value;
         return _react.default.createElement("option", {
           value: value,
-          key: "option-".concat(i),
-          selected: _this2.props.value === value
+          key: "option-".concat(i)
         }, label);
       }));
     }

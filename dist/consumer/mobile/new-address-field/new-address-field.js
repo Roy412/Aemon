@@ -15,6 +15,8 @@ var _formField = _interopRequireDefault(require("../form-field"));
 
 var _makeEvent = _interopRequireDefault(require("../../../lib/make-event"));
 
+var _touchField = _interopRequireDefault(require("../../../lib/touch-field"));
+
 require("./style.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -52,18 +54,14 @@ var NewAddressField =
 function (_FormField) {
   _inherits(NewAddressField, _FormField);
 
-  function NewAddressField() {
-    var _getPrototypeOf2, _touched;
+  function NewAddressField(props) {
+    var _touched;
 
     var _this;
 
     _classCallCheck(this, NewAddressField);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(NewAddressField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NewAddressField).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-new-address-field');
 
@@ -77,18 +75,15 @@ function (_FormField) {
       _this.onChange((0, _makeEvent.default)(newValue));
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "touchField", function (fieldName) {
-      var newState = _objectSpread({}, _this.state);
-
-      newState.touched[fieldName] = true;
-
-      _this.setState(newState, function () {
-        _this.onBlur((0, _makeEvent.default)(_this.props.value));
-
-        _this.forceUpdate();
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "touchNewAddressField", function (fieldName) {
+      var newState = _objectSpread({}, _this.state, {
+        touched: _objectSpread({}, _this.state.touched, _defineProperty({}, fieldName, true))
       });
+
+      _this.touchField(newState);
     });
 
+    _this.touchField = _touchField.default.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -128,7 +123,7 @@ function (_FormField) {
           return _this2.updateValue(_defineProperty({}, fieldName, ev.target.value));
         },
         onBlur: function onBlur() {
-          return _this2.touchField(fieldName);
+          return _this2.touchNewAddressField(fieldName);
         }
       });
     }

@@ -25,6 +25,7 @@ var mobile = {
   HistoricalPicker: _formFields.HistoricalPicker,
   PasswordField: _formFields.PasswordField,
   Picker: _formFields.Picker,
+  PhoneField: _formFields.PhoneField,
   TextField: _formFields.TextField,
   TimePicker: _formFields.TimePicker,
   NewAddressField: _formFields.NewAddressField,
@@ -40,7 +41,8 @@ var mobile = {
   Hint: _hint.default,
   hintTypes: _hint.hintTypes,
   Label: _label.default,
-  labelTypes: _label.labelTypes
+  labelTypes: _label.labelTypes,
+  MultiSelectField: _formFields.MultiSelectField
 };
 var _default = mobile;
 exports.default = _default;

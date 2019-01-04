@@ -3,19 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AddressField = void 0;
+exports.PhoneField = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _get = _interopRequireDefault(require("lodash/get"));
+var _get2 = _interopRequireDefault(require("lodash/get"));
 
 var _formFields = require("../form-fields");
-
-var _button = require("../button");
 
 var _addOrSelectField = _interopRequireDefault(require("../add-or-select-field"));
 
 var _makeEvent = _interopRequireDefault(require("../../../lib/make-event"));
+
+var _touchField = _interopRequireDefault(require("../../../lib/touch-field"));
 
 require("./style.css");
 
@@ -41,52 +41,64 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var AddressField =
+var PhoneField =
 /*#__PURE__*/
 function (_AddOrSelectField) {
-  _inherits(AddressField, _AddOrSelectField);
+  _inherits(PhoneField, _AddOrSelectField);
 
-  function AddressField() {
-    var _getPrototypeOf2;
-
+  function PhoneField(props) {
     var _this;
 
-    _classCallCheck(this, AddressField);
+    _classCallCheck(this, PhoneField);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PhoneField).call(this, props));
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AddressField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-phone-field');
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-address-field');
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      phoneTouched: false
+    });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "touchPhone", function () {
+      var newState = {
+        phoneTouched: true
+      };
+      return _this.touchField(newState);
+    });
+
+    _this.touchField = _touchField.default.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(AddressField, [{
+  _createClass(PhoneField, [{
     key: "options",
     get: function get() {
-      return this.props.addressOptions;
+      return this.props.phoneOptions;
+    }
+  }, {
+    key: "phoneError",
+    get: function get() {
+      return this.state.phoneTouched ? (0, _get2.default)(this.props, 'error.phone') : null;
     }
   }, {
     key: "field",
     get: function get() {
       var _this2 = this;
 
-      return _react.default.createElement(_formFields.NewAddressField, {
+      return _react.default.createElement(_formFields.TextField, {
+        label: this.props.addPhoneLabel,
         onChange: function onChange(ev) {
-          return _this2.updateValue(ev.target.value);
+          return _this2.updateValue({
+            phone: ev.target.value
+          });
         },
-        name: "newAddressField",
-        countryOptions: this.props.countryOptions,
-        labels: this.props.newAddressLabels,
-        error: this.props.error
+        onBlur: this.touchPhone,
+        error: this.phoneError
       });
     }
   }]);
 
-  return AddressField;
+  return PhoneField;
 }(_addOrSelectField.default);
 
-exports.AddressField = AddressField;
+exports.PhoneField = PhoneField;

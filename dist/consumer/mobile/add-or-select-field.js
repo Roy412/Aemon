@@ -3,25 +3,27 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AddressField = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _get = _interopRequireDefault(require("lodash/get"));
+var _get2 = _interopRequireDefault(require("lodash/get"));
 
-var _formFields = require("../form-fields");
+var _formFields = require("./form-fields");
 
-var _button = require("../button");
+var _button = require("./button");
 
-var _addOrSelectField = _interopRequireDefault(require("../add-or-select-field"));
+var _formField = _interopRequireDefault(require("./form-field"));
 
-var _makeEvent = _interopRequireDefault(require("../../../lib/make-event"));
+var _makeEvent = _interopRequireDefault(require("../../lib/make-event"));
 
-require("./style.css");
+var _touchField = _interopRequireDefault(require("../../lib/touch-field"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -41,52 +43,91 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var AddressField =
+var AddOrSelectField =
 /*#__PURE__*/
-function (_AddOrSelectField) {
-  _inherits(AddressField, _AddOrSelectField);
+function (_FormField) {
+  _inherits(AddOrSelectField, _FormField);
 
-  function AddressField() {
+  function AddOrSelectField() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, AddressField);
+    _classCallCheck(this, AddOrSelectField);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AddressField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AddOrSelectField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-address-field');
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateValue", function (value) {
+      var newValue = _objectSpread({}, _this.props.value, value);
+
+      _this.onChange((0, _makeEvent.default)(newValue));
+    });
 
     return _this;
   }
 
-  _createClass(AddressField, [{
-    key: "options",
-    get: function get() {
-      return this.props.addressOptions;
+  _createClass(AddOrSelectField, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", {
+        className: this.className
+      }, this.picker, this.addNewField, this.addNewButton);
     }
   }, {
-    key: "field",
+    key: "className",
+    get: function get() {
+      return this.baseClassName;
+    }
+  }, {
+    key: "addingNew",
+    get: function get() {
+      var selected = (0, _get2.default)(this.props, 'value.selected');
+      return selected === 'new';
+    }
+  }, {
+    key: "addNewButton",
     get: function get() {
       var _this2 = this;
 
-      return _react.default.createElement(_formFields.NewAddressField, {
+      if (this.addingNew) return null;
+      return _react.default.createElement(_button.SmallButton, {
+        onClick: function onClick() {
+          return _this2.updateValue({
+            selected: 'new'
+          });
+        }
+      }, this.props.addNewButtonLabel);
+    }
+  }, {
+    key: "addNewField",
+    get: function get() {
+      if (!this.addingNew) return null;
+      return this.field;
+    }
+  }, {
+    key: "picker",
+    get: function get() {
+      var _this3 = this;
+
+      return _react.default.createElement(_formFields.HistoricalPicker, {
+        options: this.options,
         onChange: function onChange(ev) {
-          return _this2.updateValue(ev.target.value);
+          return _this3.updateValue({
+            selected: ev.target.value
+          });
         },
-        name: "newAddressField",
-        countryOptions: this.props.countryOptions,
-        labels: this.props.newAddressLabels,
-        error: this.props.error
+        value: (0, _get2.default)(this.props, 'value.selected')
       });
     }
   }]);
 
-  return AddressField;
-}(_addOrSelectField.default);
+  return AddOrSelectField;
+}(_formField.default);
 
-exports.AddressField = AddressField;
+;
+var _default = AddOrSelectField;
+exports.default = _default;
