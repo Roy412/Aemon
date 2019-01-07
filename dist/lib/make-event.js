@@ -9,7 +9,9 @@ var _default = function _default(value) {
   return {
     target: {
       value: value
-    }
+    },
+    stopPropagation: function stopPropagation() {},
+    preventDefault: function preventDefault() {}
   };
 };
 
