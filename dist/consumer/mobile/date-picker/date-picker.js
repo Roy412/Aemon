@@ -3,27 +3,23 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.DatePicker = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _get2 = _interopRequireDefault(require("lodash/get"));
+var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _formFields = require("./form-fields");
+var _formField = _interopRequireDefault(require("../form-field"));
 
-var _button = require("./button");
+var _label = _interopRequireWildcard(require("../label"));
 
-var _formField = _interopRequireDefault(require("./form-field"));
+require("./style.css");
 
-var _makeEvent = _interopRequireDefault(require("../../lib/make-event"));
-
-var _touchField = _interopRequireDefault(require("../../lib/touch-field"));
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -43,91 +39,90 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var AddOrSelectField =
+var DatePicker =
 /*#__PURE__*/
 function (_FormField) {
-  _inherits(AddOrSelectField, _FormField);
+  _inherits(DatePicker, _FormField);
 
-  function AddOrSelectField() {
+  function DatePicker() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, AddOrSelectField);
+    _classCallCheck(this, DatePicker);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AddOrSelectField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DatePicker)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateValue", function (value) {
-      var newValue = _objectSpread({}, _this.adaptedProps.value, value);
-
-      _this.onChange((0, _makeEvent.default)(newValue));
-    });
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-date-picker');
 
     return _this;
   }
 
-  _createClass(AddOrSelectField, [{
+  _createClass(DatePicker, [{
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
         className: this.className
-      }, this.picker, this.addNewField, this.addNewButton);
+      }, this.label, _react.default.createElement("div", {
+        className: "pbg-date-picker-container"
+      }, _react.default.createElement("div", {
+        className: "pbg-date-picker-mask"
+      }, this.maskContents), _react.default.createElement("input", {
+        type: "date",
+        value: this.adaptedProps.value,
+        onChange: this.onChange,
+        onBlur: this.onBlur
+      })), this.hintOrError);
     }
   }, {
-    key: "className",
+    key: "defaultFormater",
     get: function get() {
-      return this.baseClassName;
+      return defaultFormater;
     }
   }, {
-    key: "addingNew",
+    key: "displayValue",
     get: function get() {
-      var selected = (0, _get2.default)(this.adaptedProps, 'value.selected');
-      return selected === 'new';
+      var format = this.adaptedProps.formater || this.defaultFormater;
+      return format(this.adaptedProps.value);
     }
   }, {
-    key: "addNewButton",
+    key: "maskContents",
     get: function get() {
-      var _this2 = this;
-
-      if (this.addingNew) return null;
-      return _react.default.createElement(_button.SmallButton, {
-        onClick: function onClick() {
-          return _this2.updateValue({
-            selected: 'new'
-          });
-        }
-      }, this.adaptedProps.addNewButtonLabel);
-    }
-  }, {
-    key: "addNewField",
-    get: function get() {
-      if (!this.addingNew) return null;
-      return this.field;
-    }
-  }, {
-    key: "picker",
-    get: function get() {
-      var _this3 = this;
-
-      return _react.default.createElement(_formFields.HistoricalPicker, {
-        options: this.options,
-        onChange: function onChange(ev) {
-          return _this3.updateValue({
-            selected: ev.target.value
-          });
-        },
-        value: (0, _get2.default)(this.adaptedProps, 'value.selected')
-      });
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_label.default, {
+        type: _label.labelTypes.SECONDARY
+      }, this.displayValue), _react.default.createElement("span", {
+        className: "pbg-picker-arrow"
+      }));
     }
   }]);
 
-  return AddOrSelectField;
+  return DatePicker;
 }(_formField.default);
 
-;
-var _default = AddOrSelectField;
-exports.default = _default;
+exports.DatePicker = DatePicker;
+
+_defineProperty(DatePicker, "propTypes", {
+  formater: _propTypes.default.func
+});
+
+var defaultFormater = function defaultFormater(date) {
+  if (!date) return 'mm/dd/yyyy';
+  return date.constructor.name === 'Date' ? formatDate(date) : formatDateString(date);
+};
+
+var formatDate = function formatDate(date) {
+  var month = date.getMonth() + 1 < 10 ? "0".concat(date.getMonth() + 1) : date.getMonth() + 1;
+  var day = date.getDate() < 10 ? "0".concat(date.getDate()) : date.getDate();
+  return "".concat(month, "/").concat(day, "/").concat(date.getFullYear());
+};
+
+var formatDateString = function formatDateString(date) {
+  var split = date.split('-');
+  var month = split[1].length < 2 ? "0".concat(split[1]) : split[1];
+  var day = split[2].length < 2 ? "0".concat(split[2]) : split[2];
+  return "".concat(month, "/").concat(day, "/").concat(split[0]);
+};

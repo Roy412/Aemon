@@ -58,7 +58,7 @@ function (_FormField) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-checkbox');
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (ev) {
-      return _this.props.onChange((0, _makeEvent.default)(ev.target.checked));
+      return _this.adaptedProps.onChange((0, _makeEvent.default)(ev.target.checked));
     });
 
     return _this;
@@ -73,22 +73,22 @@ function (_FormField) {
         type: "checkbox",
         checked: this.checked,
         onChange: this.onChange,
-        name: this.props.name
+        name: this.adaptedProps.name
       }), this.label);
     }
   }, {
     key: "checked",
     get: function get() {
-      return this.props.value || false;
+      return this.adaptedProps.value || false;
     }
   }, {
     key: "label",
     get: function get() {
-      var label = this.props.label;
+      var label = this.adaptedProps.label;
 
       var labelElement = _react.default.createElement(_label.default, {
         type: this.labelType,
-        required: this.props.required
+        required: this.adaptedProps.required
       }, label);
 
       return label ? labelElement : null;

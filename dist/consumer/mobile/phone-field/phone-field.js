@@ -73,12 +73,12 @@ function (_AddOrSelectField) {
   _createClass(PhoneField, [{
     key: "options",
     get: function get() {
-      return this.props.phoneOptions;
+      return this.adaptedProps.phoneOptions;
     }
   }, {
     key: "phoneError",
     get: function get() {
-      return this.state.phoneTouched ? (0, _get2.default)(this.props, 'error.phone') : null;
+      return this.state.phoneTouched ? (0, _get2.default)(this.adaptedProps, 'error.phone') : null;
     }
   }, {
     key: "field",
@@ -86,7 +86,7 @@ function (_AddOrSelectField) {
       var _this2 = this;
 
       return _react.default.createElement(_formFields.TextField, {
-        label: this.props.addPhoneLabel,
+        label: this.adaptedProps.addPhoneLabel,
         onChange: function onChange(ev) {
           return _this2.updateValue({
             phone: ev.target.value

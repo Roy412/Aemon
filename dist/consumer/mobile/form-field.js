@@ -37,8 +37,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var FormField =
 /*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(FormField, _React$PureComponent);
+function (_React$Component) {
+  _inherits(FormField, _React$Component);
 
   function FormField() {
     var _getPrototypeOf2;
@@ -53,28 +53,18 @@ function (_React$PureComponent) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(FormField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      focused: false
-    });
-
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field');
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onFocus", function () {
-      _this.setState({
-        focused: true
-      });
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onFocus", function (ev) {
+      if (_this.adaptedProps.onFocus) return _this.adaptedProps.onFocus(ev);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (value) {
-      _this.props.onChange(value);
+      return _this.adaptedProps.onChange(value);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onBlur", function (value) {
-      _this.setState({
-        focused: false
-      });
-
-      if (_this.props.onBlur) _this.props.onBlur(value);
+      if (_this.adaptedProps.onBlur) return _this.adaptedProps.onBlur(value);
     });
 
     return _this;
@@ -103,19 +93,25 @@ function (_React$PureComponent) {
       return resultingClassName;
     }
   }, {
+    key: "adaptedProps",
+    get: function get() {
+      if (this.props.adapter) return this.props.adapter(this.props);
+      return this.props;
+    }
+  }, {
     key: "error",
     get: function get() {
-      return this.props.error;
+      return this.adaptedProps.error;
     }
   }, {
     key: "hint",
     get: function get() {
-      return this.props.hint;
+      return this.adaptedProps.hint;
     }
   }, {
     key: "focused",
     get: function get() {
-      return this.state.focused || !!this.error;
+      return this.adaptedProps.focused || !!this.error;
     }
   }, {
     key: "labelType",
@@ -147,7 +143,7 @@ function (_React$PureComponent) {
   }]);
 
   return FormField;
-}(_react.default.PureComponent);
+}(_react.default.Component);
 
 ;
 var _default = FormField;

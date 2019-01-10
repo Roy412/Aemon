@@ -101,12 +101,12 @@ function (_FormField) {
   }, {
     key: "extractLabel",
     value: function extractLabel(fieldName) {
-      return (0, _lodash.get)(this.props, "labels.".concat(fieldName), '');
+      return (0, _lodash.get)(this.adaptedProps, "labels.".concat(fieldName), '');
     }
   }, {
     key: "extractError",
     value: function extractError(fieldName) {
-      var error = this.props.error;
+      var error = this.adaptedProps.error;
       if (!error || this.state.touched[fieldName] === false) return;
       return error[fieldName];
     }
@@ -152,12 +152,12 @@ function (_FormField) {
   }, {
     key: "countryOptions",
     get: function get() {
-      return this.props.countryOptions || [];
+      return this.adaptedProps.countryOptions || [];
     }
   }, {
     key: "currentValue",
     get: function get() {
-      return this.props.value || {};
+      return this.adaptedProps.value || {};
     }
   }]);
 

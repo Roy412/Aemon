@@ -3,15 +3,21 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Picker = exports.PICKER_EMPTY_VALUE = void 0;
+exports.DatetimePicker = void 0;
 
 var _react = _interopRequireDefault(require("react"));
+
+var _momentTimezone = _interopRequireDefault(require("moment-timezone"));
 
 var _formField = _interopRequireDefault(require("../form-field"));
 
 var _label = _interopRequireWildcard(require("../label"));
 
 var _hint = _interopRequireWildcard(require("../hint"));
+
+var _formFields = require("../form-fields");
+
+var _valueGenerator = require("./value-generator");
 
 var _makeEvent = _interopRequireDefault(require("../../../lib/make-event"));
 
@@ -41,82 +47,110 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var PICKER_EMPTY_VALUE = '__EmptyValue';
-exports.PICKER_EMPTY_VALUE = PICKER_EMPTY_VALUE;
-
-var Picker =
+var DatetimePicker =
 /*#__PURE__*/
 function (_FormField) {
-  _inherits(Picker, _FormField);
+  _inherits(DatetimePicker, _FormField);
 
-  function Picker() {
+  function DatetimePicker() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, Picker);
+    _classCallCheck(this, DatetimePicker);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Picker)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DatetimePicker)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-picker');
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-datetime-picker');
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (ev) {
-      if (ev.target.value === PICKER_EMPTY_VALUE) return _this.adaptedProps.onChange((0, _makeEvent.default)(null));
-      return _this.adaptedProps.onChange(ev);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      dateValue: '',
+      timeValue: ''
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChangeDateValue", function (ev) {
+      var currentValue = _this.adaptedProps.value;
+      var newValue = currentValue ? (0, _valueGenerator.applyDateToValue)(currentValue, ev.target.value, _this.timezone) : (0, _valueGenerator.generateNewValue)(ev.target.value, null, _this.timezone);
+
+      _this.onChange((0, _makeEvent.default)(newValue));
+
+      _this.onBlur((0, _makeEvent.default)(newValue));
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChangeTimeValue", function (ev) {
+      var currentValue = _this.adaptedProps.value;
+      var newValue = currentValue ? (0, _valueGenerator.applyTimeToValue)(currentValue, ev.target.value, _this.timezone) : (0, _valueGenerator.generateNewValue)(null, ev.target.value, _this.timezone);
+
+      _this.onChange((0, _makeEvent.default)(newValue));
+
+      _this.onBlur((0, _makeEvent.default)(newValue));
     });
 
     return _this;
   }
 
-  _createClass(Picker, [{
+  _createClass(DatetimePicker, [{
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
         className: this.className
-      }, _react.default.createElement("div", {
-        className: "pbg-picker-select-container"
-      }, this.label, this.select, _react.default.createElement("i", {
-        className: "pbg-picker-arrow"
-      })), this.hintOrError);
+      }, this.label, _react.default.createElement("div", {
+        className: "pbg-datetime-picker-pickers-wrapper"
+      }, this.pickers), this.hintOrError);
     }
   }, {
-    key: "label",
+    key: "timezone",
     get: function get() {
-      return _react.default.createElement(_label.default, {
-        required: this.adaptedProps.required
-      }, this.adaptedProps.label);
+      return this.adaptedProps.timezone;
     }
   }, {
-    key: "value",
+    key: "pickers",
     get: function get() {
-      return this.adaptedProps.value === null ? PICKER_EMPTY_VALUE : this.adaptedProps.value;
+      var components = [_react.default.createElement(_formFields.DatePicker, {
+        value: this.state.dateValue,
+        onChange: this.onChangeDateValue
+      }), _react.default.createElement(_formFields.TimePicker, {
+        value: this.state.timeValue,
+        onChange: this.onChangeTimeValue
+      })];
+      return components.map(function (comp, key) {
+        return _react.default.createElement("div", {
+          className: "pbg-datetime-picker-container",
+          key: "comp-".concat(key)
+        }, comp);
+      });
     }
-  }, {
-    key: "select",
-    get: function get() {
-      var _this$adaptedProps$op = this.adaptedProps.options,
-          options = _this$adaptedProps$op === void 0 ? [] : _this$adaptedProps$op;
-      return _react.default.createElement("select", {
-        onChange: this.onChange,
-        onBlur: this.onBlur,
-        value: this.value
-      }, options.map(function (_ref, i) {
-        var label = _ref.label,
-            value = _ref.value;
-        return _react.default.createElement("option", {
-          value: value === null ? PICKER_EMPTY_VALUE : value,
-          key: "option-".concat(i)
-        }, label);
-      }));
+  }], [{
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(props) {
+      var date = props.value;
+      if (!date) return {};
+      return {
+        dateValue: toDatePickerString(date),
+        timeValue: toTimePickerString("".concat(date.getHours(), ":").concat(date.getMinutes()))
+      };
     }
   }]);
 
-  return Picker;
+  return DatetimePicker;
 }(_formField.default);
 
-exports.Picker = Picker;
+exports.DatetimePicker = DatetimePicker;
 ;
+
+var toDatePickerString = function toDatePickerString(date) {
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  return "".concat(date.getFullYear(), "-").concat(month, "-").concat(day);
+};
+
+var toTimePickerString = function toTimePickerString(date) {
+  var split = date.split(':');
+  var hours = split[0].length < 2 ? "0".concat(split[0]) : split[0];
+  var mins = split[1].length < 2 ? "0".concat(split[1]) : split[1];
+  return "".concat(hours, ":").concat(mins);
+};

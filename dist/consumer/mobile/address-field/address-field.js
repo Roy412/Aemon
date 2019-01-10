@@ -67,7 +67,7 @@ function (_AddOrSelectField) {
   _createClass(AddressField, [{
     key: "options",
     get: function get() {
-      return this.props.addressOptions;
+      return this.adaptedProps.addressOptions;
     }
   }, {
     key: "field",
@@ -79,9 +79,9 @@ function (_AddOrSelectField) {
           return _this2.updateValue(ev.target.value);
         },
         name: "newAddressField",
-        countryOptions: this.props.countryOptions,
-        labels: this.props.newAddressLabels,
-        error: this.props.error
+        countryOptions: this.adaptedProps.countryOptions,
+        labels: this.adaptedProps.newAddressLabels,
+        error: this.adaptedProps.error
       });
     }
   }]);

@@ -95,7 +95,7 @@ function (_FormField) {
     get: function get() {
       var _this2 = this;
 
-      return (0, _get2.default)(this.props, 'options', []).map(function (opt, index) {
+      return (0, _get2.default)(this.adaptedProps, 'options', []).map(function (opt, index) {
         return _react.default.createElement(_formFields.Checkbox, {
           key: "checkbox_".concat(index),
           label: opt.label,
@@ -111,7 +111,7 @@ function (_FormField) {
   }, {
     key: "value",
     get: function get() {
-      return (0, _get2.default)(this, 'props.value', []);
+      return (0, _get2.default)(this, 'adaptedProps.value', []);
     }
   }]);
 
