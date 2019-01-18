@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextField = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _formField = _interopRequireDefault(require("../form-field"));
+var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _label = require("../label");
+var _classnames = _interopRequireDefault(require("classnames"));
 
 require("./style.css");
 
@@ -25,88 +25,57 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var TextField =
+var Banner =
 /*#__PURE__*/
-function (_FormField) {
-  _inherits(TextField, _FormField);
+function (_React$PureComponent) {
+  _inherits(Banner, _React$PureComponent);
 
-  function TextField() {
-    var _getPrototypeOf2;
+  function Banner() {
+    _classCallCheck(this, Banner);
 
-    var _this;
-
-    _classCallCheck(this, TextField);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TextField)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-text-field');
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseType", 'text');
-
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Banner).apply(this, arguments));
   }
 
-  _createClass(TextField, [{
+  _createClass(Banner, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", {
-        className: this.className
-      }, this.label, this.input, this.hintOrError);
-    }
-  }, {
-    key: "labelType",
-    get: function get() {
-      if (this.adaptedProps.error) return _label.labelTypes.ERROR;
-      return _label.labelTypes.ACTIVE;
-    }
-  }, {
-    key: "type",
-    get: function get() {
-      return this.adaptedProps.type || this.baseType;
-    }
-  }, {
-    key: "placeholder",
-    get: function get() {
-      var _this$adaptedProps = this.adaptedProps,
-          required = _this$adaptedProps.required,
-          label = _this$adaptedProps.label;
-      return !required ? label : label + '*';
-    }
-  }, {
-    key: "value",
-    get: function get() {
-      return this.adaptedProps.value || '';
-    }
-  }, {
-    key: "input",
-    get: function get() {
-      return _react.default.createElement("input", {
-        onBlur: this.onBlur,
-        onChange: this.onChange,
-        onFocus: this.onFocus,
-        name: this.adaptedProps.name,
-        value: this.value,
-        placeholder: this.placeholder,
-        type: this.type
+      var _this$props = this.props,
+          text = _this$props.text,
+          color = _this$props.color;
+      var className = (0, _classnames.default)('pbg-banner', {
+        'pbg-banner-dark-blue': color === Banner.COLORS.DARK_BLUE
       });
+      return _react.default.createElement("div", {
+        className: className
+      }, text);
     }
   }]);
 
-  return TextField;
-}(_formField.default);
+  return Banner;
+}(_react.default.PureComponent);
 
-exports.TextField = TextField;
+_defineProperty(Banner, "COLORS", {
+  DARK_BLUE: 'dark-blue'
+});
+
+_defineProperty(Banner, "propTypes", {
+  text: _propTypes.default.string.isRequired,
+  color: _propTypes.default.oneOf([Banner.COLORS.DARK_BLUE])
+});
+
+_defineProperty(Banner, "defaultProps", {
+  color: Banner.COLORS.DARK_BLUE
+});
+
+var _default = Banner;
+exports.default = _default;

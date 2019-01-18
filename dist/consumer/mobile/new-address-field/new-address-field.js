@@ -15,8 +15,6 @@ var _formField = _interopRequireDefault(require("../form-field"));
 
 var _makeEvent = _interopRequireDefault(require("../../../lib/make-event"));
 
-var _touchField = _interopRequireDefault(require("../../../lib/touch-field"));
-
 require("./style.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -54,20 +52,20 @@ var NewAddressField =
 function (_FormField) {
   _inherits(NewAddressField, _FormField);
 
-  function NewAddressField(props) {
-    var _touched;
+  function NewAddressField() {
+    var _getPrototypeOf2;
 
     var _this;
 
     _classCallCheck(this, NewAddressField);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(NewAddressField).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(NewAddressField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-new-address-field');
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      touched: (_touched = {}, _defineProperty(_touched, STREET_ADDRESS, false), _defineProperty(_touched, CITY, false), _defineProperty(_touched, STATE, false), _defineProperty(_touched, POSTAL_CODE, false), _touched)
-    });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateValue", function (value) {
       var newValue = _objectSpread({}, _this.currentValue, value);
@@ -75,15 +73,6 @@ function (_FormField) {
       _this.onChange((0, _makeEvent.default)(newValue));
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "touchNewAddressField", function (fieldName) {
-      var newState = _objectSpread({}, _this.state, {
-        touched: _objectSpread({}, _this.state.touched, _defineProperty({}, fieldName, true))
-      });
-
-      _this.touchField(newState);
-    });
-
-    _this.touchField = _touchField.default.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -107,7 +96,7 @@ function (_FormField) {
     key: "extractError",
     value: function extractError(fieldName) {
       var error = this.adaptedProps.error;
-      if (!error || this.state.touched[fieldName] === false) return;
+      if (!error) return;
       return error[fieldName];
     }
   }, {
@@ -117,13 +106,15 @@ function (_FormField) {
 
       return _react.default.createElement(_formFields.TextField, {
         name: fieldName,
+        value: this.currentValue[fieldName] || '',
         label: this.extractLabel(fieldName),
         error: this.extractError(fieldName),
         onChange: function onChange(ev) {
           return _this2.updateValue(_defineProperty({}, fieldName, ev.target.value));
         },
+        onFocus: this.onFocus,
         onBlur: function onBlur() {
-          return _this2.touchNewAddressField(fieldName);
+          return _this2.onBlur((0, _makeEvent.default)(_this2.currentValue));
         }
       });
     }
@@ -137,6 +128,7 @@ function (_FormField) {
       }, this.textFieldFor(STREET_ADDRESS), this.textFieldFor(CITY), this.textFieldFor(STATE), this.textFieldFor(POSTAL_CODE), _react.default.createElement(_formFields.Picker, {
         name: COUNTRY,
         options: this.countryOptions,
+        value: this.currentValue[COUNTRY],
         label: this.extractLabel(COUNTRY),
         error: this.extractError(COUNTRY),
         onChange: function onChange(ev) {

@@ -26,6 +26,7 @@ var mobile = {
   PasswordField: _formFields.PasswordField,
   Picker: _formFields.Picker,
   PhoneField: _formFields.PhoneField,
+  TextArea: _formFields.TextArea,
   TextField: _formFields.TextField,
   TimePicker: _formFields.TimePicker,
   NewAddressField: _formFields.NewAddressField,

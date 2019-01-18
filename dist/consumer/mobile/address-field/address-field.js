@@ -79,9 +79,12 @@ function (_AddOrSelectField) {
           return _this2.updateValue(ev.target.value);
         },
         name: "newAddressField",
+        value: this.adaptedProps.value,
         countryOptions: this.adaptedProps.countryOptions,
         labels: this.adaptedProps.newAddressLabels,
-        error: this.adaptedProps.error
+        error: this.adaptedProps.error,
+        onFocus: this.onFocus,
+        onBlur: this.onBlur
       });
     }
   }]);

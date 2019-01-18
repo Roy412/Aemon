@@ -3,15 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextField = void 0;
+exports.TextArea = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _formField = _interopRequireDefault(require("../form-field"));
+var _textField = require("../text-field");
 
-var _label = require("../label");
+var _hint = _interopRequireWildcard(require("../hint"));
 
 require("./style.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35,78 +37,54 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var TextField =
+var TextArea =
 /*#__PURE__*/
-function (_FormField) {
-  _inherits(TextField, _FormField);
+function (_TextField) {
+  _inherits(TextArea, _TextField);
 
-  function TextField() {
+  function TextArea() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, TextField);
+    _classCallCheck(this, TextArea);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TextField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TextArea)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-text-field');
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseType", 'text');
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-text-field pbg-text-area');
 
     return _this;
   }
 
-  _createClass(TextField, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement("div", {
-        className: this.className
-      }, this.label, this.input, this.hintOrError);
-    }
-  }, {
-    key: "labelType",
-    get: function get() {
-      if (this.adaptedProps.error) return _label.labelTypes.ERROR;
-      return _label.labelTypes.ACTIVE;
-    }
-  }, {
-    key: "type",
-    get: function get() {
-      return this.adaptedProps.type || this.baseType;
-    }
-  }, {
-    key: "placeholder",
+  _createClass(TextArea, [{
+    key: "rows",
     get: function get() {
       var _this$adaptedProps = this.adaptedProps,
-          required = _this$adaptedProps.required,
-          label = _this$adaptedProps.label;
-      return !required ? label : label + '*';
-    }
-  }, {
-    key: "value",
-    get: function get() {
-      return this.adaptedProps.value || '';
+          value = _this$adaptedProps.value,
+          focused = _this$adaptedProps.focused;
+      if (value && value.length > 100) return 3;
+      return focused ? 3 : 1;
     }
   }, {
     key: "input",
     get: function get() {
-      return _react.default.createElement("input", {
+      return _react.default.createElement("textarea", {
+        rows: this.rows,
         onBlur: this.onBlur,
         onChange: this.onChange,
         onFocus: this.onFocus,
         name: this.adaptedProps.name,
-        value: this.value,
-        placeholder: this.placeholder,
-        type: this.type
+        value: this.adaptedProps.value,
+        placeholder: this.placeholder
       });
     }
   }]);
 
-  return TextField;
-}(_formField.default);
+  return TextArea;
+}(_textField.TextField);
 
-exports.TextField = TextField;
+exports.TextArea = TextArea;

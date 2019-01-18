@@ -124,6 +124,18 @@ Object.keys(_phoneField).forEach(function (key) {
   });
 });
 
+var _textArea = require("./text-area");
+
+Object.keys(_textArea).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _textArea[key];
+    }
+  });
+});
+
 var _textField = require("./text-field");
 
 Object.keys(_textField).forEach(function (key) {

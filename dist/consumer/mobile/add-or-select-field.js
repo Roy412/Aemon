@@ -85,6 +85,7 @@ function (_FormField) {
   }, {
     key: "addingNew",
     get: function get() {
+      if (!this.options || !this.options.length) return true;
       var selected = (0, _get2.default)(this.adaptedProps, 'value.selected');
       return selected === 'new';
     }
@@ -113,6 +114,7 @@ function (_FormField) {
     get: function get() {
       var _this3 = this;
 
+      if (!this.options || !this.options.length) return null;
       return _react.default.createElement(_formFields.HistoricalPicker, {
         options: this.options,
         onChange: function onChange(ev) {
