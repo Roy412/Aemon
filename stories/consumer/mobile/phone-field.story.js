@@ -24,9 +24,18 @@ const validate = (value) => {
   return errors;
 };
 
-storiesOf('Form Fields/Phone Field', module)
+storiesOf('Consumer/Mobile/Form Fields/Phone Field', module)
   .addDecorator(wrapStory)
   .addDecorator(withContainer)
+  .add('No phone options', () => (
+    <FieldStateProvider
+      component={PhoneField}
+      name="new-phone-field"
+      addPhoneLabel="Phone Number"
+      addNewButtonLabel="Add new"
+      onChange={action('onChange')}
+    />
+  ))
   .add('No validations', () => (
     <FieldStateProvider
       component={PhoneField}

@@ -34,7 +34,7 @@ const labels = {
   country: 'Country',
 };
 
-storiesOf('Form Fields/New Address Field', module)
+storiesOf('Consumer/Mobile/Form Fields/New Address Field', module)
   .addDecorator(wrapStory)
   .addDecorator(withContainer)
   .add('No validations', () => (
@@ -42,6 +42,10 @@ storiesOf('Form Fields/New Address Field', module)
       component={NewAddressField}
       name="new-address-field"
       labels={labels}
+      value={{
+        streetAddress: 'Some street',
+        city: 'Some city',
+      }}
       countryOptions={countries}
       onChange={action('onChange')}
     />
@@ -52,6 +56,9 @@ storiesOf('Form Fields/New Address Field', module)
       component={NewAddressField}
       name="new-address-field"
       labels={labels}
+      value={{
+        streetAddress: '',
+      }}
       countryOptions={countries}
       onChange={action('onChange')}
     />
