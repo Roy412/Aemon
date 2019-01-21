@@ -60,7 +60,7 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (value) {
-      return _this.adaptedProps.onChange(value);
+      if (_this.adaptedProps.onChange) return _this.adaptedProps.onChange(value);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onBlur", function (value) {

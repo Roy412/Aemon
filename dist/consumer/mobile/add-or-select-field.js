@@ -9,6 +9,10 @@ var _react = _interopRequireDefault(require("react"));
 
 var _get2 = _interopRequireDefault(require("lodash/get"));
 
+var _first = _interopRequireDefault(require("lodash/first"));
+
+var _isString = _interopRequireDefault(require("lodash/isString"));
+
 var _formFields = require("./form-fields");
 
 var _button = require("./button");
@@ -71,6 +75,19 @@ function (_FormField) {
   }
 
   _createClass(AddOrSelectField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var selected = (0, _get2.default)(this.adaptedProps, 'value.selected');
+
+      if (selected !== 'new' && (0, _get2.default)(this, 'options.length')) {
+        var newValue = _objectSpread({}, this.adaptedProps.value, {
+          selected: (0, _isString.default)(selected) ? selected : (0, _get2.default)((0, _first.default)(this.options), 'value')
+        });
+
+        this.onChange((0, _makeEvent.default)(newValue));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
