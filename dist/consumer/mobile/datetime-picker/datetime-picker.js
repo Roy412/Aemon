@@ -67,11 +67,6 @@ function (_FormField) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-datetime-picker');
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      dateValue: '',
-      timeValue: ''
-    });
-
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChangeDateValue", function (ev) {
       var currentValue = _this.adaptedProps.value;
       var newValue = currentValue ? (0, _valueGenerator.applyDateToValue)(currentValue, ev.target.value, _this.timezone) : (0, _valueGenerator.generateNewValue)(ev.target.value, null, _this.timezone);
@@ -103,6 +98,18 @@ function (_FormField) {
       }, this.pickers), this.hintOrError);
     }
   }, {
+    key: "dateValue",
+    get: function get() {
+      if (this.value) return toDatePickerString(this.value);
+      return '';
+    }
+  }, {
+    key: "timeValue",
+    get: function get() {
+      if (this.value) return toTimePickerString("".concat(this.value.getHours(), ":").concat(this.value.getMinutes()));
+      return '';
+    }
+  }, {
     key: "timezone",
     get: function get() {
       return this.adaptedProps.timezone;
@@ -111,10 +118,10 @@ function (_FormField) {
     key: "pickers",
     get: function get() {
       var components = [_react.default.createElement(_formFields.DatePicker, {
-        value: this.state.dateValue,
+        value: this.dateValue,
         onChange: this.onChangeDateValue
       }), _react.default.createElement(_formFields.TimePicker, {
-        value: this.state.timeValue,
+        value: this.timeValue,
         onChange: this.onChangeTimeValue
       })];
       return components.map(function (comp, key) {
@@ -123,16 +130,6 @@ function (_FormField) {
           key: "comp-".concat(key)
         }, comp);
       });
-    }
-  }], [{
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(props) {
-      var date = props.value;
-      if (!date) return {};
-      return {
-        dateValue: toDatePickerString(date),
-        timeValue: toTimePickerString("".concat(date.getHours(), ":").concat(date.getMinutes()))
-      };
     }
   }]);
 

@@ -81,6 +81,11 @@ function (_AddOrSelectField) {
       return this.state.phoneTouched ? (0, _get2.default)(this.adaptedProps, 'error.phone') : null;
     }
   }, {
+    key: "phoneValue",
+    get: function get() {
+      return (0, _get2.default)(this.value, 'phone');
+    }
+  }, {
     key: "field",
     get: function get() {
       var _this2 = this;
@@ -92,6 +97,7 @@ function (_AddOrSelectField) {
             phone: ev.target.value
           });
         },
+        value: this.phoneValue,
         onBlur: this.touchPhone,
         error: this.phoneError
       });

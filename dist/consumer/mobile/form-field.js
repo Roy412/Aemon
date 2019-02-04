@@ -114,6 +114,11 @@ function (_React$Component) {
       return this.adaptedProps.focused || !!this.error;
     }
   }, {
+    key: "value",
+    get: function get() {
+      return this.adaptedProps.value;
+    }
+  }, {
     key: "labelType",
     get: function get() {
       if (this.props.error) return _label.labelTypes.ERROR;
