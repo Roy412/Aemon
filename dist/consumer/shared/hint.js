@@ -7,6 +7,8 @@ exports.default = exports.hintTypes = exports.hintClassNames = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _trim = _interopRequireDefault(require("lodash/trim"));
+
 var _hintClassNames;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -42,6 +44,17 @@ var _default = function _default(props) {
 exports.default = _default;
 
 var className = function className(_ref) {
-  var type = _ref.type;
-  return !!type ? "".concat(hintClassNames.base, " ").concat(hintClassNames[type]) : hintClassNames.base;
+  var type = _ref.type,
+      className = _ref.className;
+  var resultingClassName = hintClassNames.base;
+
+  if (className) {
+    resultingClassName += " ".concat((0, _trim.default)(className));
+  }
+
+  if (hintClassNames[type]) {
+    resultingClassName += " ".concat(hintClassNames[type]);
+  }
+
+  return resultingClassName;
 };

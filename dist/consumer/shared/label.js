@@ -7,6 +7,8 @@ exports.default = exports.labelTypes = exports.labelClassNames = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _trim = _interopRequireDefault(require("lodash/trim"));
+
 var _labelClassNames;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -59,8 +61,13 @@ var normalLabel = function normalLabel(props) {
 
 var className = function className(_ref2) {
   var type = _ref2.type,
-      required = _ref2.required;
+      required = _ref2.required,
+      className = _ref2.className;
   var resultingClassName = BASE_CLASS;
+
+  if (className) {
+    resultingClassName += " ".concat((0, _trim.default)(className));
+  }
 
   if (required) {
     resultingClassName += ' required';

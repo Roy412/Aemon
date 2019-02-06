@@ -3,17 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PrimaryButton = void 0;
+exports.default = exports.CLASS_NAME = void 0;
 
 var _react = _interopRequireDefault(require("react"));
-
-var _button = _interopRequireWildcard(require("../../shared/button"));
-
-var _hint = _interopRequireDefault(require("../hint"));
-
-require("./style.css");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37,37 +29,79 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var PrimaryButton =
-/*#__PURE__*/
-function (_BaseButton) {
-  _inherits(PrimaryButton, _BaseButton);
+var CLASS_NAME = 'pbg-button';
+exports.CLASS_NAME = CLASS_NAME;
 
-  function PrimaryButton() {
+var BaseButton =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inherits(BaseButton, _React$PureComponent);
+
+  function BaseButton() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, PrimaryButton);
+    _classCallCheck(this, BaseButton);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PrimaryButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BaseButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", "".concat(_button.CLASS_NAME, " pbg-consumer-desktop pbg-button-primary"));
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", CLASS_NAME);
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onClick", function (ev) {
+      if (_this.props.disabled) return;
+      if (typeof _this.props.onClick === 'function') return _this.props.onClick(ev);
+    });
 
     return _this;
   }
 
-  _createClass(PrimaryButton, [{
+  _createClass(BaseButton, [{
+    key: "renderHint",
+    value: function renderHint(Hint) {
+      if (this.props.hint) {
+        return _react.default.createElement("div", {
+          className: "pbg-button-hint-container"
+        }, _react.default.createElement(Hint, null, this.props.hint));
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", null, _react.default.createElement("button", {
+        type: this.buttonType,
+        className: this.className,
+        onClick: this.onClick,
+        disabled: this.props.disabled
+      }, _react.default.createElement("span", null, this.props.children)), this.hint);
+    }
+  }, {
+    key: "buttonType",
+    get: function get() {
+      return !!this.props.onClick ? 'button' : 'submit';
+    }
+  }, {
+    key: "className",
+    get: function get() {
+      var _this$props = this.props,
+          disabled = _this$props.disabled,
+          className = _this$props.className;
+      var base = className ? "".concat(this.baseClassName, " ").concat(className) : this.baseClassName;
+      return disabled ? base + ' disabled' : base;
+    }
+  }, {
     key: "hint",
     get: function get() {
-      return this.renderHint(_hint.default);
+      throw new Error('Not implemented, Implement this method in a sub-class');
     }
   }]);
 
-  return PrimaryButton;
-}(_button.default);
+  return BaseButton;
+}(_react.default.PureComponent);
 
-exports.PrimaryButton = PrimaryButton;
+var _default = BaseButton;
+exports.default = _default;
