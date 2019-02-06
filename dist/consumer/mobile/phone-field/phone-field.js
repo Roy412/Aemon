@@ -99,6 +99,8 @@ function (_AddOrSelectField) {
         },
         value: this.phoneValue,
         onBlur: this.touchPhone,
+        type: "tel",
+        pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}",
         error: this.phoneError
       });
     }

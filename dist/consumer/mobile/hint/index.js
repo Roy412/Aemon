@@ -3,47 +3,34 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.hintTypes = exports.hintClassNames = void 0;
+var _exportNames = {};
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _hint = _interopRequireWildcard(require("../../shared/hint"));
+
+Object.keys(_hint).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _hint[key];
+    }
+  });
+});
+
 require("./style.css");
 
-var _hintClassNames;
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var ERROR = 'error';
-var CLICKABLE = 'clickable';
-var hintClassNames = (_hintClassNames = {
-  base: 'pbg-hint'
-}, _defineProperty(_hintClassNames, ERROR, 'pbg-hint-error'), _defineProperty(_hintClassNames, CLICKABLE, 'pbg-hint-clickable'), _hintClassNames);
-exports.hintClassNames = hintClassNames;
-var hintTypes = {
-  ERROR: ERROR,
-  CLICKABLE: CLICKABLE
-};
-exports.hintTypes = hintTypes;
-
 var _default = function _default(props) {
-  if (props.onClick) {
-    return _react.default.createElement("span", {
-      className: className(props)
-    }, _react.default.createElement("a", {
-      onClick: props.onClick
-    }, props.children));
-  }
-
-  return _react.default.createElement("span", {
-    className: className(props)
-  }, props.children);
+  return _react.default.createElement("div", {
+    className: "pbg-consumer-mobile"
+  }, _react.default.createElement(_hint.default, props));
 };
 
 exports.default = _default;
-
-var className = function className(_ref) {
-  var type = _ref.type;
-  return !!type ? "".concat(hintClassNames.base, " ").concat(hintClassNames[type]) : hintClassNames.base;
-};

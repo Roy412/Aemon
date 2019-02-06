@@ -29,7 +29,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = function _default(props) {
   return _react.default.createElement("div", {
-    className: "pbg-consumer-mobile"
+    className: "pbg-consumer-desktop"
   }, _react.default.createElement(_label.default, props));
 };
 

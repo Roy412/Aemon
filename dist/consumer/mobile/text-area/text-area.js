@@ -55,7 +55,7 @@ function (_TextField) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TextArea)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-text-field pbg-text-area');
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-consumer-mobile pbg-form-field pbg-text-field pbg-text-area');
 
     return _this;
   }

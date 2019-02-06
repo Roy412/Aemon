@@ -8,15 +8,15 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _label = _interopRequireWildcard(require("../../shared/label"));
+var _hint = _interopRequireWildcard(require("../../shared/hint"));
 
-Object.keys(_label).forEach(function (key) {
+Object.keys(_hint).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _label[key];
+      return _hint[key];
     }
   });
 });
@@ -29,8 +29,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = function _default(props) {
   return _react.default.createElement("div", {
-    className: "pbg-consumer-mobile"
-  }, _react.default.createElement(_label.default, props));
+    className: "pbg-consumer-desktop"
+  }, _react.default.createElement(_hint.default, props));
 };
 
 exports.default = _default;

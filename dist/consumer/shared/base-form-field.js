@@ -3,15 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextField = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _formField = _interopRequireDefault(require("../form-field"));
-
-var _label = require("../label");
-
-require("./style.css");
+var _hint = require("./hint");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35,79 +31,130 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var TextField =
+var BaseFormField =
 /*#__PURE__*/
-function (_FormField) {
-  _inherits(TextField, _FormField);
+function (_React$Component) {
+  _inherits(BaseFormField, _React$Component);
 
-  function TextField() {
+  function BaseFormField() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, TextField);
+    _classCallCheck(this, BaseFormField);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TextField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BaseFormField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-text-field');
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field');
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseType", 'text');
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onFocus", function (ev) {
+      if (_this.adaptedProps.onFocus) return _this.adaptedProps.onFocus(ev);
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (value) {
+      if (_this.adaptedProps.onChange) return _this.adaptedProps.onChange(value);
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onBlur", function (value) {
+      if (_this.adaptedProps.onBlur) return _this.adaptedProps.onBlur(value);
+    });
 
     return _this;
   }
 
-  _createClass(TextField, [{
+  _createClass(BaseFormField, [{
+    key: "renderLabel",
+    value: function renderLabel(Label) {
+      var label = this.props.label;
+
+      var labelElement = _react.default.createElement("div", null, _react.default.createElement(Label, {
+        type: this.labelType,
+        required: this.props.required
+      }, label));
+
+      return label ? labelElement : null;
+    }
+  }, {
+    key: "renderHintOrError",
+    value: function renderHintOrError(Hint) {
+      if (this.error) return _react.default.createElement("div", null, _react.default.createElement(Hint, {
+        type: _hint.hintTypes.ERROR
+      }, this.error));
+      if (this.hint) return _react.default.createElement("div", null, _react.default.createElement(Hint, null, this.hint));
+      return null;
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
         className: this.className
-      }, this.label, this.input, this.hintOrError);
+      });
     }
   }, {
-    key: "labelType",
+    key: "className",
     get: function get() {
-      if (this.adaptedProps.error) return _label.labelTypes.ERROR;
-      return _label.labelTypes.ACTIVE;
+      var resultingClassName = this.baseClassName;
+
+      if (this.error) {
+        resultingClassName += ' pbg-form-field-error';
+      }
+
+      if (this.focused) {
+        resultingClassName += ' pbg-form-field-focused';
+      }
+
+      return resultingClassName;
     }
   }, {
-    key: "type",
+    key: "adaptedProps",
     get: function get() {
-      return this.adaptedProps.type || this.baseType;
+      if (this.props.adapter) return this.props.adapter(this.props);
+      return this.props;
     }
   }, {
-    key: "placeholder",
+    key: "error",
     get: function get() {
-      var _this$adaptedProps = this.adaptedProps,
-          required = _this$adaptedProps.required,
-          label = _this$adaptedProps.label;
-      return !required ? label : label + '*';
+      return this.adaptedProps.error;
+    }
+  }, {
+    key: "hint",
+    get: function get() {
+      return this.adaptedProps.hint;
+    }
+  }, {
+    key: "focused",
+    get: function get() {
+      return this.adaptedProps.focused || !!this.error;
     }
   }, {
     key: "value",
     get: function get() {
-      return this.adaptedProps.value || '';
+      return this.adaptedProps.value;
     }
   }, {
-    key: "input",
+    key: "labelType",
     get: function get() {
-      return _react.default.createElement("input", {
-        onBlur: this.onBlur,
-        onChange: this.onChange,
-        onFocus: this.onFocus,
-        name: this.adaptedProps.name,
-        value: this.value,
-        placeholder: this.placeholder,
-        pattern: this.adaptedProps.pattern,
-        type: this.type
-      });
+      throw new Error('Not implemented, Implement this method in a sub-class.');
+    }
+  }, {
+    key: "label",
+    get: function get() {
+      throw new Error('Not implemented, Implement this method in a sub-class.');
+    }
+  }, {
+    key: "hintOrError",
+    get: function get() {
+      throw new Error('Not implemented, Implement this method in a sub-class.');
     }
   }]);
 
-  return TextField;
-}(_formField.default);
+  return BaseFormField;
+}(_react.default.Component);
 
-exports.TextField = TextField;
+;
+var _default = BaseFormField;
+exports.default = _default;

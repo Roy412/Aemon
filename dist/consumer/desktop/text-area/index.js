@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextField = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -35,48 +35,42 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var TextField =
+var TextArea =
 /*#__PURE__*/
 function (_FormField) {
-  _inherits(TextField, _FormField);
+  _inherits(TextArea, _FormField);
 
-  function TextField() {
+  function TextArea() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, TextField);
+    _classCallCheck(this, TextArea);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TextField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TextArea)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-text-field');
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-consumer-desktop pbg-form-field pbg-text-area');
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseType", 'text');
 
     return _this;
   }
 
-  _createClass(TextField, [{
+  _createClass(TextArea, [{
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
         className: this.className
-      }, this.label, this.input, this.hintOrError);
+      }, this.input, this.hintOrError);
     }
   }, {
-    key: "labelType",
+    key: "rows",
     get: function get() {
-      if (this.adaptedProps.error) return _label.labelTypes.ERROR;
-      return _label.labelTypes.ACTIVE;
-    }
-  }, {
-    key: "type",
-    get: function get() {
-      return this.adaptedProps.type || this.baseType;
+      return 3;
     }
   }, {
     key: "placeholder",
@@ -94,20 +88,20 @@ function (_FormField) {
   }, {
     key: "input",
     get: function get() {
-      return _react.default.createElement("input", {
+      return _react.default.createElement("textarea", {
+        rows: this.rows,
         onBlur: this.onBlur,
         onChange: this.onChange,
         onFocus: this.onFocus,
         name: this.adaptedProps.name,
         value: this.value,
-        placeholder: this.placeholder,
-        pattern: this.adaptedProps.pattern,
-        type: this.type
+        placeholder: this.placeholder
       });
     }
   }]);
 
-  return TextField;
+  return TextArea;
 }(_formField.default);
 
-exports.TextField = TextField;
+var _default = TextArea;
+exports.default = _default;

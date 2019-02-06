@@ -15,7 +15,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 var PrimaryButton = function PrimaryButton(props) {
   return _react.default.createElement(_button.default, _extends({}, props, {
-    className: "pbg-button-primary"
+    className: "pbg-consumer-mobile pbg-button-primary"
   }), props.children);
 };
 
@@ -23,7 +23,7 @@ exports.PrimaryButton = PrimaryButton;
 
 var SecondaryButton = function SecondaryButton(props) {
   return _react.default.createElement(_button.default, _extends({}, props, {
-    className: "pbg-button-secondary"
+    className: "pbg-consumer-mobile pbg-button-secondary"
   }), props.children);
 };
 
@@ -31,7 +31,7 @@ exports.SecondaryButton = SecondaryButton;
 
 var SmallButton = function SmallButton(props) {
   return _react.default.createElement(_button.default, _extends({}, props, {
-    className: "pbg-button-small"
+    className: "pbg-consumer-mobile pbg-button-small"
   }), props.children);
 };
 
@@ -39,7 +39,7 @@ exports.SmallButton = SmallButton;
 
 var LinkButton = function LinkButton(props) {
   return _react.default.createElement(_button.default, _extends({}, props, {
-    className: "pbg-button-link"
+    className: "pbg-consumer-mobile pbg-button-link"
   }), props.children);
 };
 
@@ -47,7 +47,7 @@ exports.LinkButton = LinkButton;
 
 var FacebookButton = function FacebookButton(props) {
   return _react.default.createElement(_button.default, _extends({}, props, {
-    className: "pbg-button-facebook"
+    className: "pbg-consumer-mobile pbg-button-facebook"
   }), props.children);
 };
 
@@ -55,7 +55,7 @@ exports.FacebookButton = FacebookButton;
 
 var SmallFacebookButton = function SmallFacebookButton(props) {
   return _react.default.createElement(_button.default, _extends({}, props, {
-    className: "pbg-button-facebook-small"
+    className: "pbg-consumer-mobile pbg-button-facebook-small"
   }), props.children);
 };
 
