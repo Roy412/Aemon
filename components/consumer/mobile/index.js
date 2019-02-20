@@ -28,6 +28,10 @@ import {
 } from './heading';
 import Hint, { hintTypes } from './hint';
 import Label, { labelTypes } from './label';
+import {
+  UserCommentCard,
+  GroupActivityCard
+} from './activity-card';
 
 const mobile = {
   AddressField,
@@ -54,6 +58,8 @@ const mobile = {
   Hint, hintTypes,
   Label, labelTypes,
   MultiSelectField,
+  UserCommentCard,
+  GroupActivityCard,
 };
 
 export default mobile;
