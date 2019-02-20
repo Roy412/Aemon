@@ -15,6 +15,8 @@ var _hint = _interopRequireWildcard(require("./hint"));
 
 var _label = _interopRequireWildcard(require("./label"));
 
+var _activityCard = require("./activity-card");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 var mobile = {
@@ -43,7 +45,9 @@ var mobile = {
   hintTypes: _hint.hintTypes,
   Label: _label.default,
   labelTypes: _label.labelTypes,
-  MultiSelectField: _formFields.MultiSelectField
+  MultiSelectField: _formFields.MultiSelectField,
+  UserCommentCard: _activityCard.UserCommentCard,
+  GroupActivityCard: _activityCard.GroupActivityCard
 };
 var _default = mobile;
 exports.default = _default;

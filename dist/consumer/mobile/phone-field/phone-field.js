@@ -15,8 +15,6 @@ var _addOrSelectField = _interopRequireDefault(require("../add-or-select-field")
 
 var _makeEvent = _interopRequireDefault(require("../../../lib/make-event"));
 
-var _touchField = _interopRequireDefault(require("../../../lib/touch-field"));
-
 require("./style.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -46,27 +44,21 @@ var PhoneField =
 function (_AddOrSelectField) {
   _inherits(PhoneField, _AddOrSelectField);
 
-  function PhoneField(props) {
+  function PhoneField() {
+    var _getPrototypeOf2;
+
     var _this;
 
     _classCallCheck(this, PhoneField);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(PhoneField).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PhoneField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-phone-field');
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      phoneTouched: false
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "touchPhone", function () {
-      var newState = {
-        phoneTouched: true
-      };
-      return _this.touchField(newState);
-    });
-
-    _this.touchField = _touchField.default.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -78,7 +70,7 @@ function (_AddOrSelectField) {
   }, {
     key: "phoneError",
     get: function get() {
-      return this.state.phoneTouched ? (0, _get2.default)(this.adaptedProps, 'error.phone') : null;
+      return (0, _get2.default)(this.adaptedProps, 'error.phone');
     }
   }, {
     key: "phoneValue",
@@ -98,7 +90,6 @@ function (_AddOrSelectField) {
           });
         },
         value: this.phoneValue,
-        onBlur: this.touchPhone,
         type: "tel",
         pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}",
         error: this.phoneError
