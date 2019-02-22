@@ -61,9 +61,9 @@ function (_React$PureComponent) {
         className: "activity-card-title"
       }, this.props.title), _react.default.createElement("p", {
         className: "activity-card-time"
-      }, this.time), _react.default.createElement("p", {
+      }, this.time), _react.default.createElement("div", {
         className: "activity-card-description"
-      }, this.props.description)));
+      }, this.props.children)));
     }
   }, {
     key: "time",
@@ -78,15 +78,13 @@ function (_React$PureComponent) {
 _defineProperty(ActivityCard, "propTypes", {
   type: _propTypes.default.string.isRequired,
   title: _propTypes.default.string.isRequired,
-  time: _propTypes.default.string.isRequired,
-  description: _propTypes.default.string.isRequired
+  time: _propTypes.default.string.isRequired
 });
 
 _defineProperty(ActivityCard, "defaultProps", {
   type: null,
   title: null,
-  time: null,
-  description: null
+  time: null
 });
 
 var _default = ActivityCard;
