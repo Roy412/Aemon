@@ -85,7 +85,7 @@ _defineProperty(ActivityComment, "propTypes", {
   src: _propTypes.default.string,
   title: _propTypes.default.string.isRequired,
   comment: _propTypes.default.string.isRequired,
-  time: _propTypes.default.object.isRequired
+  time: _propTypes.default.string.isRequired
 });
 
 _defineProperty(ActivityComment, "defaultProps", {

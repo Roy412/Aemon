@@ -19,6 +19,8 @@ var _activityComment = _interopRequireDefault(require("./activity-comment"));
 
 var _addComment = _interopRequireDefault(require("./add-comment"));
 
+var _button = require("./button");
+
 var _activityThumbnail = _interopRequireWildcard(require("./activity-thumbnail"));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -44,7 +46,8 @@ var desktop = {
   PAYMENT_CAPTURED: _activityThumbnail.PAYMENT_CAPTURED,
   PURCHASE_COMPLETED: _activityThumbnail.PURCHASE_COMPLETED,
   PURCHASE_COMMENT_CREATED: _activityThumbnail.PURCHASE_COMMENT_CREATED,
-  AddComment: _addComment.default
+  AddComment: _addComment.default,
+  PrimaryButton: _button.PrimaryButton
 };
 var _default = desktop;
 exports.default = _default;

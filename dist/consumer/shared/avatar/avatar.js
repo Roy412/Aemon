@@ -136,7 +136,7 @@ _defineProperty(Avatar, "DEFAULT_SIZE", 35);
 _defineProperty(Avatar, "propTypes", {
   className: _propTypes.default.string,
   size: _propTypes.default.number.isRequired,
-  src: _propTypes.default.string.isRequired
+  src: _propTypes.default.string
 });
 
 _defineProperty(Avatar, "defaultProps", {
