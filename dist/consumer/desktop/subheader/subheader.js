@@ -47,12 +47,16 @@ function (_React$PureComponent) {
   _createClass(Subheader, [{
     key: "render",
     value: function render() {
-      var text = this.props.text;
+      var _this$props = this.props,
+          text = _this$props.text,
+          anchor = _this$props.anchor;
       return _react.default.createElement("div", {
         className: "pbg-subheader-wrapper"
       }, _react.default.createElement("div", {
         className: "pbg-subheader-text"
-      }, text), _react.default.createElement("div", {
+      }, _react.default.createElement("a", {
+        id: anchor
+      }, text)), _react.default.createElement("div", {
         className: "pbg-subheader-divider"
       }));
     }
@@ -62,7 +66,8 @@ function (_React$PureComponent) {
 }(_react.default.PureComponent);
 
 _defineProperty(Subheader, "propTypes", {
-  text: _propTypes.default.string.isRequired
+  text: _propTypes.default.string.isRequired,
+  anchor: _propTypes.default.string.isRequired
 });
 
 var _default = Subheader;
