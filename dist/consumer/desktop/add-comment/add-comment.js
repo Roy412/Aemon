@@ -70,6 +70,7 @@ function (_FormField) {
       }, this.renderAvatar()), _react.default.createElement("div", {
         className: "pbg-add-comment-form-placeholder"
       }, _react.default.createElement(_textArea.default, _extends({}, this.props, {
+        rows: 1,
         label: this.props.textLabel
       })), _react.default.createElement(_button.PrimaryButton, null, this.adaptedProps.ctaLabel)));
     }

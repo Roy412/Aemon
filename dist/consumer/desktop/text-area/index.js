@@ -70,7 +70,7 @@ function (_FormField) {
   }, {
     key: "rows",
     get: function get() {
-      return 3;
+      return this.props.rows || 3;
     }
   }, {
     key: "placeholder",
