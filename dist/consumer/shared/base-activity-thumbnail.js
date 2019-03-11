@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.DEFAULT_ICON_URL = exports.PURCHASE_COMMENT_CREATED = exports.PURCHASE_COMPLETED = exports.PAYMENT_CAPTURED = exports.PAYMENT_AUTHORIZED = exports.PURCHASE_UNTIPPED = exports.PURCHASE_TIPPED = exports.MEMBER_WITHDREW = exports.MEMBER_JOINED = exports.MEMBER_INVITED = exports.PURCHASE_CLAIMED = exports.PURCHASE_UPDATED = exports.URL_PREFIX = void 0;
+exports.default = exports.DEFAULT_ICON_URL = exports.PURCHASE_COMMENT_CREATED = exports.PURCHASE_COMPLETED = exports.PAYMENT_CAPTURED = exports.PAYMENT_AUTHORIZED_PURCHASE = exports.PAYMENT_AUTHORIZED_PAYMENT = exports.PAYMENT_AUTHORIZED_DEPOSIT = exports.PAYMENT_AUTHORIZED = exports.PURCHASE_UNTIPPED = exports.PURCHASE_TIPPED = exports.MEMBER_WITHDREW = exports.MEMBER_JOINED = exports.MEMBER_INVITED = exports.PURCHASE_CLAIMED = exports.PURCHASE_UPDATED = exports.URL_PREFIX = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -53,6 +53,12 @@ var PURCHASE_UNTIPPED = 'purchase_untipped';
 exports.PURCHASE_UNTIPPED = PURCHASE_UNTIPPED;
 var PAYMENT_AUTHORIZED = 'payment_authorized';
 exports.PAYMENT_AUTHORIZED = PAYMENT_AUTHORIZED;
+var PAYMENT_AUTHORIZED_DEPOSIT = 'payment_authorized_deposit';
+exports.PAYMENT_AUTHORIZED_DEPOSIT = PAYMENT_AUTHORIZED_DEPOSIT;
+var PAYMENT_AUTHORIZED_PAYMENT = 'payment_authorized_payment';
+exports.PAYMENT_AUTHORIZED_PAYMENT = PAYMENT_AUTHORIZED_PAYMENT;
+var PAYMENT_AUTHORIZED_PURCHASE = 'payment_authorized_purchase';
+exports.PAYMENT_AUTHORIZED_PURCHASE = PAYMENT_AUTHORIZED_PURCHASE;
 var PAYMENT_CAPTURED = 'payment_captured';
 exports.PAYMENT_CAPTURED = PAYMENT_CAPTURED;
 var PURCHASE_COMPLETED = 'purchase_completed';
@@ -61,7 +67,7 @@ var PURCHASE_COMMENT_CREATED = 'purchase_comment_created';
 exports.PURCHASE_COMMENT_CREATED = PURCHASE_COMMENT_CREATED;
 var DEFAULT_ICON_URL = "".concat(URL_PREFIX).concat(MEMBER_WITHDREW);
 exports.DEFAULT_ICON_URL = DEFAULT_ICON_URL;
-var types = [PURCHASE_UPDATED, PURCHASE_CLAIMED, MEMBER_INVITED, MEMBER_JOINED, MEMBER_WITHDREW, PURCHASE_TIPPED, PURCHASE_UNTIPPED, PAYMENT_AUTHORIZED, PAYMENT_CAPTURED, PURCHASE_COMPLETED, PURCHASE_COMMENT_CREATED, DEFAULT_ICON_URL];
+var types = [PURCHASE_UPDATED, PURCHASE_CLAIMED, MEMBER_INVITED, MEMBER_JOINED, MEMBER_WITHDREW, PURCHASE_TIPPED, PURCHASE_UNTIPPED, PAYMENT_AUTHORIZED, PAYMENT_AUTHORIZED_DEPOSIT, PAYMENT_AUTHORIZED_PAYMENT, PAYMENT_AUTHORIZED_PURCHASE, PAYMENT_CAPTURED, PURCHASE_COMPLETED, PURCHASE_COMMENT_CREATED, DEFAULT_ICON_URL];
 
 var ActivityThumbnail =
 /*#__PURE__*/
@@ -142,7 +148,7 @@ _defineProperty(ActivityThumbnail, "defaultProps", {
   src: null
 });
 
-_defineProperty(ActivityThumbnail, "icons", (_defineProperty2 = {}, _defineProperty(_defineProperty2, PURCHASE_UPDATED, "".concat(URL_PREFIX).concat(PURCHASE_UPDATED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_CLAIMED, "".concat(URL_PREFIX).concat(PURCHASE_CLAIMED, ".svg")), _defineProperty(_defineProperty2, MEMBER_INVITED, "".concat(URL_PREFIX).concat(MEMBER_INVITED, ".svg")), _defineProperty(_defineProperty2, MEMBER_JOINED, "".concat(URL_PREFIX).concat(MEMBER_JOINED, ".svg")), _defineProperty(_defineProperty2, MEMBER_WITHDREW, "".concat(URL_PREFIX).concat(MEMBER_WITHDREW, ".svg")), _defineProperty(_defineProperty2, PURCHASE_TIPPED, "".concat(URL_PREFIX).concat(PURCHASE_TIPPED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_UNTIPPED, "".concat(URL_PREFIX).concat(PURCHASE_UNTIPPED, ".svg")), _defineProperty(_defineProperty2, PAYMENT_AUTHORIZED, "".concat(URL_PREFIX).concat(PAYMENT_AUTHORIZED, ".svg")), _defineProperty(_defineProperty2, PAYMENT_CAPTURED, "".concat(URL_PREFIX).concat(PAYMENT_CAPTURED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_COMPLETED, "".concat(URL_PREFIX).concat(PURCHASE_COMPLETED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_COMMENT_CREATED, false), _defineProperty2));
+_defineProperty(ActivityThumbnail, "icons", (_defineProperty2 = {}, _defineProperty(_defineProperty2, PURCHASE_UPDATED, "".concat(URL_PREFIX).concat(PURCHASE_UPDATED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_CLAIMED, "".concat(URL_PREFIX).concat(PURCHASE_CLAIMED, ".svg")), _defineProperty(_defineProperty2, MEMBER_INVITED, "".concat(URL_PREFIX).concat(MEMBER_INVITED, ".svg")), _defineProperty(_defineProperty2, MEMBER_JOINED, "".concat(URL_PREFIX).concat(MEMBER_JOINED, ".svg")), _defineProperty(_defineProperty2, MEMBER_WITHDREW, "".concat(URL_PREFIX).concat(MEMBER_WITHDREW, ".svg")), _defineProperty(_defineProperty2, PURCHASE_TIPPED, "".concat(URL_PREFIX).concat(PURCHASE_TIPPED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_UNTIPPED, "".concat(URL_PREFIX).concat(PURCHASE_UNTIPPED, ".svg")), _defineProperty(_defineProperty2, PAYMENT_AUTHORIZED, "".concat(URL_PREFIX).concat(PAYMENT_AUTHORIZED, ".svg")), _defineProperty(_defineProperty2, PAYMENT_AUTHORIZED_DEPOSIT, "".concat(URL_PREFIX).concat(PAYMENT_AUTHORIZED_DEPOSIT, ".svg")), _defineProperty(_defineProperty2, PAYMENT_AUTHORIZED_PAYMENT, "".concat(URL_PREFIX).concat(PAYMENT_AUTHORIZED_PAYMENT, ".svg")), _defineProperty(_defineProperty2, PAYMENT_AUTHORIZED_PURCHASE, "".concat(URL_PREFIX).concat(PAYMENT_AUTHORIZED_PURCHASE, ".svg")), _defineProperty(_defineProperty2, PAYMENT_CAPTURED, "".concat(URL_PREFIX).concat(PAYMENT_CAPTURED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_COMPLETED, "".concat(URL_PREFIX).concat(PURCHASE_COMPLETED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_COMMENT_CREATED, false), _defineProperty2));
 
 var _default = ActivityThumbnail;
 exports.default = _default;
