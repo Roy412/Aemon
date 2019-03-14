@@ -29,19 +29,27 @@ exports.hintTypes = hintTypes;
 
 var _default = function _default(props) {
   if (props.onClick) {
-    return _react.default.createElement("span", {
-      className: className(props)
-    }, _react.default.createElement("a", {
+    return mainTag(props, _react.default.createElement("a", {
       onClick: props.onClick
     }, props.children));
   }
 
-  return _react.default.createElement("span", {
-    className: className(props)
-  }, props.children);
+  return mainTag(props, props.children);
 };
 
 exports.default = _default;
+
+var mainTag = function mainTag(props, content) {
+  if (props.multiline) {
+    return _react.default.createElement("p", {
+      className: className(props)
+    }, content);
+  }
+
+  return _react.default.createElement("span", {
+    className: className(props)
+  }, content);
+};
 
 var className = function className(_ref) {
   var type = _ref.type,

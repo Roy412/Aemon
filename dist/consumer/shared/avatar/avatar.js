@@ -67,42 +67,85 @@ function (_React$PureComponent) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getFallbackImageProps", function () {
       var userId = _this.props.userId;
-      var colors = _defaults.default.colors,
-          shapes = _defaults.default.shapes;
+      var colors = _defaults.default.colors;
 
       if (!userId) {
         return {
-          color: colors[0],
-          shape: shapes[0]
+          color: colors[0]
         };
       }
 
       var index = parseInt(userId, 16);
       return {
-        color: colors[index % colors.length],
-        shape: shapes[index % shapes.length]
+        color: colors[index % colors.length]
       };
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderFallbackAvatar", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getInitials", function () {
+      var fullName = _this.props.fullName;
+      if (!fullName) return false;
+      var nameArray = fullName.split(' ');
+      return nameArray.filter(function (word, idx) {
+        if (idx === 0 || idx === nameArray.length - 1) {
+          return true;
+        }
+
+        return false;
+      }).map(function (i) {
+        return i.substr(0, 1).toUpperCase();
+      }).join('');
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderInitials", function () {
       var _this$props = _this.props,
           className = _this$props.className,
           size = _this$props.size;
 
       var _this$getFallbackImag = _this.getFallbackImageProps(),
-          color = _this$getFallbackImag.color,
-          shape = _this$getFallbackImag.shape;
+          color = _this$getFallbackImag.color;
+
+      var initials = _this.getInitials();
+
+      var classNames = (0, _classnames.default)('pbg-avatar', className);
+
+      if (initials.length === 1) {
+        classNames = (0, _classnames.default)(classNames, 'single');
+      }
+
+      return _react.default.createElement("div", {
+        className: classNames,
+        style: {
+          backgroundColor: color,
+          width: "".concat(size, "px"),
+          height: "".concat(size, "px")
+        }
+      }, _react.default.createElement("div", null, initials));
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderFallbackAvatar", function () {
+      var _this$props2 = _this.props,
+          className = _this$props2.className,
+          size = _this$props2.size;
+
+      var _this$getFallbackImag2 = _this.getFallbackImageProps(),
+          color = _this$getFallbackImag2.color;
 
       return _react.default.createElement("svg", {
         className: (0, _classnames.default)('pbg-avatar', className),
-        xmlns: "http://www.w3.org/2000/svg",
         width: size,
         height: size,
-        viewBox: "0 0 51 51"
+        viewBox: "0 0 32 32",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg"
       }, _react.default.createElement("path", {
-        d: shape,
         fill: color,
-        fillRule: "evenodd"
+        d: "M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32Z"
+      }), _react.default.createElement("path", {
+        d: "M16.1367 6.25714C13.1007 6.25714 10.6367 8.72119 10.6367 11.7572V14.9913C10.6367 18.0274 13.1007 20.4914 16.1367 20.4914C19.1727 20.4914 21.6367 18.0274 21.6367 14.9913V11.7572C21.6367 8.72119 19.1727 6.25714 16.1367 6.25714Z",
+        stroke: "white"
+      }), _react.default.createElement("path", {
+        d: "M24.0677 22.6036C24.7497 22.9886 25.4097 23.4286 26.0367 23.9126C26.7297 24.4516 27.1367 25.2876 27.1367 26.1897V32.1801C27.1367 33.7531 25.9047 34.1149 24.3867 34.1149H7.88672C6.36872 34.1149 5.13672 33.7531 5.13672 32.1801V26.1897C5.13672 25.2876 5.54372 24.4516 6.23672 23.9126C6.86372 23.4286 7.52371 22.9886 8.20571 22.6036",
+        stroke: "white"
       }));
     });
 
@@ -112,19 +155,28 @@ function (_React$PureComponent) {
   _createClass(Avatar, [{
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          className = _this$props2.className,
-          size = _this$props2.size,
-          src = _this$props2.src;
+      var _this$props3 = this.props,
+          className = _this$props3.className,
+          size = _this$props3.size,
+          src = _this$props3.src;
       var hasError = this.state.hasError;
-      if (!src || hasError) return this.renderFallbackAvatar();
-      return _react.default.createElement("img", {
-        className: (0, _classnames.default)('pbg-avatar', className),
-        height: size,
-        src: src,
-        width: size,
-        onError: this.handleError
-      });
+      var initials = this.getInitials();
+
+      if (src && !hasError) {
+        return _react.default.createElement("img", {
+          className: (0, _classnames.default)('pbg-avatar', className),
+          height: size,
+          src: src,
+          width: size,
+          onError: this.handleError
+        });
+      }
+
+      if (initials.length) {
+        return this.renderInitials();
+      }
+
+      return this.renderFallbackAvatar();
     }
   }]);
 
@@ -136,7 +188,8 @@ _defineProperty(Avatar, "DEFAULT_SIZE", 35);
 _defineProperty(Avatar, "propTypes", {
   className: _propTypes.default.string,
   size: _propTypes.default.number.isRequired,
-  src: _propTypes.default.string
+  src: _propTypes.default.string,
+  fullName: _propTypes.default.string
 });
 
 _defineProperty(Avatar, "defaultProps", {
