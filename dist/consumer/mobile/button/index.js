@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SmallFacebookButton = exports.FacebookButton = exports.LinkButton = exports.SmallButton = exports.SecondaryButton = exports.PrimaryButton = void 0;
+exports.SmallFacebookButton = exports.FacebookButton = exports.LinkButton = exports.SmallButton = exports.SecondaryButton = exports.PrimaryButton = exports.types = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -225,3 +225,12 @@ function (_BaseMobileButton6) {
 }(BaseMobileButton);
 
 exports.SmallFacebookButton = SmallFacebookButton;
+var types = {
+  PRIMARY: 'primary',
+  SECONDARY: 'seconday',
+  SMALL: 'small',
+  LINK: 'link',
+  FACEBOOK: 'facebook',
+  FACEBOOK_SMALL: 'facebook-small'
+};
+exports.types = types;

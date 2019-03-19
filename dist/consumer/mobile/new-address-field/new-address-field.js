@@ -77,17 +77,6 @@ function (_FormField) {
   }
 
   _createClass(NewAddressField, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (!this.currentValue.country && this.countryOptions.length) {
-        var newValue = _objectSpread({}, this.currentValue, {
-          country: (0, _lodash.get)((0, _lodash.first)(this.countryOptions), 'value')
-        });
-
-        this.onChange((0, _makeEvent.default)(newValue));
-      }
-    }
-  }, {
     key: "extractLabel",
     value: function extractLabel(fieldName) {
       return (0, _lodash.get)(this.adaptedProps, "labels.".concat(fieldName), '');

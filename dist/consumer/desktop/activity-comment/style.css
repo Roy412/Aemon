@@ -1,4 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500|Roboto+Condensed);
+.regular-text {
+  color: #4c4c4c;
+  font-family: "Roboto", serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px; }
+
 .activity-comment {
   width: 100%;
   margin-bottom: 15px; }
@@ -8,7 +16,7 @@
     height: 100%;
     float: left;
     margin-right: 15px;
-    padding-top: 30px; }
+    padding-top: 22px; }
   .activity-comment .activity-comment-text {
     float: left;
     border: 1px solid #cfcfcf;
@@ -23,7 +31,7 @@
       border: 1px solid #cfcfcf;
       position: absolute;
       left: -8px;
-      top: 40px;
+      top: 32px;
       transform: rotate(45deg);
       background-color: #fff;
       border-right: none;

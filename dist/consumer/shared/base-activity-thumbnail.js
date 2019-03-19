@@ -128,7 +128,7 @@ function (_React$PureComponent) {
   return ActivityThumbnail;
 }(_react.default.PureComponent);
 
-_defineProperty(ActivityThumbnail, "DEFAULT_SIZE", 35);
+_defineProperty(ActivityThumbnail, "DEFAULT_SIZE", 32);
 
 _defineProperty(ActivityThumbnail, "propTypes", {
   size: _propTypes.default.number.isRequired,

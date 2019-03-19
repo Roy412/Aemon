@@ -183,7 +183,7 @@ function (_React$PureComponent) {
   return Avatar;
 }(_react.default.PureComponent);
 
-_defineProperty(Avatar, "DEFAULT_SIZE", 35);
+_defineProperty(Avatar, "DEFAULT_SIZE", 32);
 
 _defineProperty(Avatar, "propTypes", {
   className: _propTypes.default.string,
