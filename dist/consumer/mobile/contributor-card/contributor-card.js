@@ -15,6 +15,8 @@ var _hint = _interopRequireDefault(require("../hint"));
 
 var _button = require("../button");
 
+var _historicalPicker = require("../historical-picker");
+
 require("./style.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -63,9 +65,7 @@ function (_React$PureComponent) {
         className: "pbg-contributor-card-body"
       }, _react.default.createElement(_heading.H2, null, this.props.title), _react.default.createElement("div", {
         className: "pbg-contributor-card-content"
-      }, _react.default.createElement(_hint.default, {
-        multiline: "true"
-      }, this.props.content))), _react.default.createElement("div", {
+      }, this.props.content)), _react.default.createElement("div", {
         className: "pbg-contributor-card-ctas"
       }, _react.default.createElement("div", null, this.cta)));
     }
@@ -90,18 +90,16 @@ function (_React$PureComponent) {
     get: function get() {
       var _this = this;
 
-      return this.props.cta.map(function (btn) {
-        if (_this.props.cta.length === 1) {
-          return _react.default.createElement(_button.LinkButton, {
-            onClick: btn.onClick
-          }, btn.label);
-        }
-
+      return this.props.cta.map(function (cta, index) {
         return _react.default.createElement("div", {
-          className: "cta-container"
-        }, _react.default.createElement(_button.LinkButton, {
-          onClick: btn.onClick
-        }, btn.label));
+          className: _this.props.cta.length > 1 ? 'cta-container' : '',
+          key: "cta-".concat(index)
+        }, cta.type === 'picker' ? _react.default.createElement(_historicalPicker.HistoricalPicker, {
+          options: cta.options,
+          onChange: cta.onChange
+        }) : _react.default.createElement(_button.LinkButton, {
+          onClick: cta.onClick
+        }, cta.label));
       });
     }
   }]);
@@ -115,8 +113,8 @@ _defineProperty(ContributorCard, "types", {
 
 _defineProperty(ContributorCard, "propTypes", {
   type: _propTypes.default.string,
-  title: _propTypes.default.string,
-  content: _propTypes.default.string,
+  title: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.node]),
+  content: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.node]),
   cta: _propTypes.default.array
 });
 

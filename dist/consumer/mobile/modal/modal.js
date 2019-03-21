@@ -72,7 +72,7 @@ function (_React$PureComponent) {
       }, _react.default.createElement("div", {
         className: "pbg-modal-heading"
       }, _react.default.createElement(_button.LinkButton, {
-        onClick: this.props.onBackClick
+        onClick: this.onBackClick
       }, this.props.backButtonCaption), _react.default.createElement(_heading.H2, null, this.props.title)), _react.default.createElement("div", {
         className: "pbg-modal-body"
       }, this.props.children), this.cta), _react.default.createElement("div", {
