@@ -58,7 +58,8 @@ function (_React$PureComponent) {
       }, _react.default.createElement(_activityThumbnail.default, {
         type: _activityThumbnail.PURCHASE_COMMENT_CREATED,
         src: this.props.src,
-        userId: this.props.userId
+        userId: this.props.userId,
+        fullName: this.props.fullName
       }), _react.default.createElement("div", {
         className: "activity-comment-text"
       }, _react.default.createElement("div", {
@@ -83,6 +84,8 @@ function (_React$PureComponent) {
 
 _defineProperty(ActivityComment, "propTypes", {
   src: _propTypes.default.string,
+  fullName: _propTypes.default.string,
+  userId: _propTypes.default.string,
   title: _propTypes.default.string.isRequired,
   comment: _propTypes.default.string.isRequired,
   time: _propTypes.default.string.isRequired

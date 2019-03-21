@@ -121,7 +121,7 @@ function (_React$PureComponent) {
     key: "shouldRenderAvatar",
     get: function get() {
       var hasUrl = !!ActivityThumbnail.icons[this.props.type];
-      return !hasUrl && (!!this.props.src || !!this.props.userId);
+      return !hasUrl && (!!this.props.src || !!this.props.userId || !!this.props.fullName);
     }
   }]);
 
@@ -134,6 +134,7 @@ _defineProperty(ActivityThumbnail, "propTypes", {
   size: _propTypes.default.number.isRequired,
   userId: _propTypes.default.string,
   src: _propTypes.default.string,
+  fullName: _propTypes.default.string,
   type: function type(props, propName) {
     if (!(0, _lodash.includes)(types, props[propName])) {
       return new Error('Invalid prop `' + propName + '` supplied to' + ' `' + componentName + '`. Validation failed.');
@@ -145,7 +146,8 @@ _defineProperty(ActivityThumbnail, "defaultProps", {
   size: ActivityThumbnail.DEFAULT_SIZE,
   type: null,
   userId: null,
-  src: null
+  src: null,
+  fullName: null
 });
 
 _defineProperty(ActivityThumbnail, "icons", (_defineProperty2 = {}, _defineProperty(_defineProperty2, PURCHASE_UPDATED, "".concat(URL_PREFIX).concat(PURCHASE_UPDATED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_CLAIMED, "".concat(URL_PREFIX).concat(PURCHASE_CLAIMED, ".svg")), _defineProperty(_defineProperty2, MEMBER_INVITED, "".concat(URL_PREFIX).concat(MEMBER_INVITED, ".svg")), _defineProperty(_defineProperty2, MEMBER_JOINED, "".concat(URL_PREFIX).concat(MEMBER_JOINED, ".svg")), _defineProperty(_defineProperty2, MEMBER_WITHDREW, "".concat(URL_PREFIX).concat(MEMBER_WITHDREW, ".svg")), _defineProperty(_defineProperty2, PURCHASE_TIPPED, "".concat(URL_PREFIX).concat(PURCHASE_TIPPED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_UNTIPPED, "".concat(URL_PREFIX).concat(PURCHASE_UNTIPPED, ".svg")), _defineProperty(_defineProperty2, PAYMENT_AUTHORIZED, "".concat(URL_PREFIX).concat(PAYMENT_AUTHORIZED, ".svg")), _defineProperty(_defineProperty2, PAYMENT_AUTHORIZED_DEPOSIT, "".concat(URL_PREFIX).concat(PAYMENT_AUTHORIZED_DEPOSIT, ".svg")), _defineProperty(_defineProperty2, PAYMENT_AUTHORIZED_PAYMENT, "".concat(URL_PREFIX).concat(PAYMENT_AUTHORIZED_PAYMENT, ".svg")), _defineProperty(_defineProperty2, PAYMENT_AUTHORIZED_PURCHASE, "".concat(URL_PREFIX).concat(PAYMENT_AUTHORIZED_PURCHASE, ".svg")), _defineProperty(_defineProperty2, PAYMENT_CAPTURED, "".concat(URL_PREFIX).concat(PAYMENT_CAPTURED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_COMPLETED, "".concat(URL_PREFIX).concat(PURCHASE_COMPLETED, ".svg")), _defineProperty(_defineProperty2, PURCHASE_COMMENT_CREATED, false), _defineProperty2));

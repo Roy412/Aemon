@@ -57,7 +57,8 @@ function (_FormField) {
         src: this.props.avatarSrc
       });
       return _react.default.createElement(_avatar.default, {
-        userId: this.props.userId
+        userId: this.props.userId,
+        fullName: this.props.fullName
       });
     }
   }, {
