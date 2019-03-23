@@ -15,7 +15,7 @@ const options = [
   { label: 'Withdraw', value: 'withdraw' },
 ];
 
-storiesOf('Consumer/Mobile/Atomic Components/ContributorCard', module)
+storiesOf('Consumer/Mobile/Dashboard/ContributorCard', module)
   .addDecorator(storyFn => <WithFigma url={figmaUrl}>{storyFn()}</WithFigma>)
   .addDecorator(wrapStory)
   .addDecorator(withMobileSizing)
@@ -47,7 +47,7 @@ storiesOf('Consumer/Mobile/Atomic Components/ContributorCard', module)
       type={ContributorCard.types.error}
       heading="Payment failure!"
       title="This is the payment failure header text."
-      content="Body text providing supplementary information regarding the failure to the user."
+      content={<Hint multiline>Body text providing supplementary information regarding the failure to the user.</Hint>}
       cta={[{ label: 'CTA', onClick: action('click') }]}
     />
   ));
