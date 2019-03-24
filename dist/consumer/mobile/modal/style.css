@@ -7,11 +7,15 @@
   font-size: 14px;
   line-height: 20px; }
 
+.label-strong {
+  font-weight: 500; }
+
 .pbg-consumer-mobile.pbg-modal {
   position: fixed;
   top: 0;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  z-index: 1050; }
   .pbg-consumer-mobile.pbg-modal .pbg-modal-overlay {
     position: fixed;
     top: 0;

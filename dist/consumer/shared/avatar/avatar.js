@@ -86,11 +86,7 @@ function (_React$PureComponent) {
       if (!fullName) return false;
       var nameArray = fullName.split(' ');
       return nameArray.filter(function (word, idx) {
-        if (idx === 0 || idx === nameArray.length - 1) {
-          return true;
-        }
-
-        return false;
+        return idx === 0 || idx === nameArray.length - 1;
       }).map(function (i) {
         return i.substr(0, 1).toUpperCase();
       }).join('');

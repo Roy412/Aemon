@@ -103,13 +103,17 @@ function (_React$PureComponent) {
 var renderButton = function renderButton(_ref, isLast) {
   var label = _ref.label,
       onClick = _ref.onClick,
-      type = _ref.type;
+      type = _ref.type,
+      disabled = _ref.disabled;
   var ButtonComponent = chooseComponent(type);
-  return _react.default.createElement(ButtonComponent, {
-    onClick: onClick,
+  var className = isLast ? 'last' : '';
+  var props = {
     key: label,
-    className: isLast ? 'last' : ''
-  }, label);
+    className: className,
+    onClick: onClick,
+    disabled: disabled
+  };
+  return _react.default.createElement(ButtonComponent, props, label);
 };
 
 var chooseComponent = function chooseComponent(type) {
