@@ -84,7 +84,8 @@ function (_AddOrSelectField) {
         labels: this.adaptedProps.newAddressLabels,
         error: this.adaptedProps.error,
         onFocus: this.onFocus,
-        onBlur: this.onBlur
+        onBlur: this.onBlur,
+        forceErrorDisplay: this.adaptedProps.forceErrorDisplay
       });
     }
   }]);

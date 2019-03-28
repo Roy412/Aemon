@@ -59,10 +59,27 @@ function (_AddOrSelectField) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-phone-field');
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      touched: false
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onBlur", function (ev) {
+      _this.setState({
+        touched: true
+      }, function () {
+        if (_this.adaptedProps.onBlur) _this.adaptedProps.onBlur(ev);
+      });
+    });
+
     return _this;
   }
 
   _createClass(PhoneField, [{
+    key: "currentValue",
+    get: function get() {
+      return this.adaptedProps.value || {};
+    }
+  }, {
     key: "options",
     get: function get() {
       return this.adaptedProps.phoneOptions;
@@ -70,7 +87,10 @@ function (_AddOrSelectField) {
   }, {
     key: "phoneError",
     get: function get() {
-      return (0, _get2.default)(this.adaptedProps, 'error.phone');
+      var forceDisplay = (0, _get2.default)(this.adaptedProps, 'forceErrorDisplay', false);
+      var message = (0, _get2.default)(this.adaptedProps, 'error.phone');
+      if (message && forceDisplay) return message;
+      if (message && this.state.touched) return message;
     }
   }, {
     key: "phoneValue",
@@ -88,6 +108,9 @@ function (_AddOrSelectField) {
           return _this2.updateValue({
             phone: ev.target.value
           });
+        },
+        onBlur: function onBlur() {
+          return _this2.onBlur((0, _makeEvent.default)(_this2.currentValue));
         },
         value: this.phoneValue,
         type: "tel",
