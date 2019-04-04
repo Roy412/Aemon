@@ -7,19 +7,13 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _baseAddComment = _interopRequireDefault(require("../../shared/base-add-comment"));
-
-var _textArea = _interopRequireDefault(require("../text-area"));
-
-var _avatar = _interopRequireDefault(require("../avatar"));
-
-var _button = require("../button");
-
-require("./style.css");
+var _baseFormField = _interopRequireDefault(require("./base-form-field"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -29,59 +23,85 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var AddComment =
+var BaseAddComment =
 /*#__PURE__*/
-function (_BaseAddComment) {
-  _inherits(AddComment, _BaseAddComment);
+function (_BaseFormField) {
+  _inherits(BaseAddComment, _BaseFormField);
 
-  function AddComment() {
-    var _getPrototypeOf2;
+  function BaseAddComment() {
+    _classCallCheck(this, BaseAddComment);
 
-    var _this;
-
-    _classCallCheck(this, AddComment);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AddComment)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-consumer-desktop pbg-add-comment');
-
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(BaseAddComment).apply(this, arguments));
   }
 
-  _createClass(AddComment, [{
+  _createClass(BaseAddComment, [{
+    key: "renderAvatar",
+    value: function renderAvatar(Avatar) {
+      if (this.adaptedProps.avatarSrc) return _react.default.createElement(Avatar, {
+        src: this.adaptedProps.avatarSrc
+      });
+      return _react.default.createElement(Avatar, {
+        userId: this.adaptedProps.userId,
+        fullName: this.adaptedProps.fullName
+      });
+    }
+  }, {
+    key: "renderSubmitButton",
+    value: function renderSubmitButton(Button) {
+      return _react.default.createElement(Button, null, this.adaptedProps.ctaLabel);
+    }
+  }, {
+    key: "renderTextArea",
+    value: function renderTextArea(TextArea) {
+      return _react.default.createElement(TextArea, _extends({}, this.props, {
+        rows: 1,
+        label: this.adaptedProps.textLabel
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", {
+        className: this.className
+      }, _react.default.createElement("div", {
+        className: "pbg-add-comment-avatar-placeholder"
+      }, this.avatar), _react.default.createElement("div", {
+        className: "pbg-add-comment-form-placeholder"
+      }, this.textArea, this.submitButton));
+    }
+  }, {
+    key: "className",
+    get: function get() {
+      return this.baseClassName;
+    }
+  }, {
     key: "avatar",
     get: function get() {
-      return this.renderAvatar(_avatar.default);
+      throw new Error('Not implemented, Implement this method in a sub-class.');
     }
   }, {
     key: "submitButton",
     get: function get() {
-      return this.renderSubmitButton(_button.PrimaryButton);
+      throw new Error('Not implemented, Implement this method in a sub-class.');
     }
   }, {
     key: "textArea",
     get: function get() {
-      return this.renderTextArea(_textArea.default);
+      throw new Error('Not implemented, Implement this method in a sub-class.');
     }
   }]);
 
-  return AddComment;
-}(_baseAddComment.default);
+  return BaseAddComment;
+}(_baseFormField.default);
 
 ;
-var _default = AddComment;
+var _default = BaseAddComment;
 exports.default = _default;

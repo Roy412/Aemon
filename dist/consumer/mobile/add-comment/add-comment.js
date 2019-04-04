@@ -9,13 +9,17 @@ var _react = _interopRequireDefault(require("react"));
 
 var _baseAddComment = _interopRequireDefault(require("../../shared/base-add-comment"));
 
-var _textArea = _interopRequireDefault(require("../text-area"));
+var _textArea = require("../text-area");
 
 var _avatar = _interopRequireDefault(require("../avatar"));
 
 var _button = require("../button");
 
+var _label = _interopRequireWildcard(require("../label"));
+
 require("./style.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57,7 +61,7 @@ function (_BaseAddComment) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AddComment)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-consumer-desktop pbg-add-comment');
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-consumer-mobile pbg-add-comment');
 
     return _this;
   }
@@ -65,17 +69,21 @@ function (_BaseAddComment) {
   _createClass(AddComment, [{
     key: "avatar",
     get: function get() {
-      return this.renderAvatar(_avatar.default);
+      return _react.default.createElement("div", {
+        className: "pbg-add-comment-avatar-with-name"
+      }, this.renderAvatar(_avatar.default), _react.default.createElement(_label.default, {
+        type: _label.labelTypes.STRONG
+      }, this.adaptedProps.fullName));
     }
   }, {
     key: "submitButton",
     get: function get() {
-      return this.renderSubmitButton(_button.PrimaryButton);
+      return this.renderSubmitButton(_button.SmallButton);
     }
   }, {
     key: "textArea",
     get: function get() {
-      return this.renderTextArea(_textArea.default);
+      return this.renderTextArea(_textArea.TextArea);
     }
   }]);
 
