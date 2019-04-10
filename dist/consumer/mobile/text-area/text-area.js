@@ -71,8 +71,14 @@ function (_TextField) {
       setTimeout(function () {
         _this.setState({
           style: {
-            height: "".concat(_this.ref.current.scrollHeight, "px")
+            height: 'auto'
           }
+        }, function () {
+          _this.setState({
+            style: {
+              height: "".concat(_this.ref.current.scrollHeight, "px")
+            }
+          });
         });
       }, 0);
     });
