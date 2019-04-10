@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 svg.pbg-avatar {
   object-fit: cover;
@@ -15,14 +14,14 @@ div.pbg-avatar {
     font-size: 14px;
     font-weight: bold;
     color: #FFF;
-    padding-top: 7px;
+    padding-top: 6px;
     text-align: center;
-    font-family: monospace "Roboto Mono";
+    font-family: "roboto-mono", monospace;
   }
 
   &.single {
     > div {
-      padding-top: 7px;
+      padding-top: 6px;
     }
   }
 }
