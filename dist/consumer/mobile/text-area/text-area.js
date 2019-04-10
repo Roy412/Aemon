@@ -57,29 +57,42 @@ function (_TextField) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-consumer-mobile pbg-form-field pbg-text-field pbg-text-area');
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "ref", _react.default.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      style: {
+        height: 'auto'
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onTextChange", function (value) {
+      _this.onChange(value);
+
+      setTimeout(function () {
+        _this.setState({
+          style: {
+            height: "".concat(_this.ref.current.scrollHeight, "px")
+          }
+        });
+      }, 0);
+    });
+
     return _this;
   }
 
   _createClass(TextArea, [{
-    key: "rows",
-    get: function get() {
-      var _this$adaptedProps = this.adaptedProps,
-          value = _this$adaptedProps.value,
-          focused = _this$adaptedProps.focused;
-      if (value && value.length > 100) return 3;
-      return focused ? 3 : 1;
-    }
-  }, {
     key: "input",
     get: function get() {
       return _react.default.createElement("textarea", {
-        rows: this.rows,
+        rows: 1,
+        ref: this.ref,
         onBlur: this.onBlur,
-        onChange: this.onChange,
+        onChange: this.onTextChange,
         onFocus: this.onFocus,
         name: this.adaptedProps.name,
         value: this.adaptedProps.value,
-        placeholder: this.placeholder
+        placeholder: this.placeholder,
+        style: this.state.style
       });
     }
   }]);

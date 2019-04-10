@@ -16,7 +16,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 var _default = function _default(props) {
   return _react.default.createElement(_avatar.default, _extends({}, props, {
     className: "pbg-consumer-mobile",
-    size: props.size || 30
+    size: props.size || 32
   }));
 };
 
