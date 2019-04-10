@@ -17,9 +17,15 @@ var _formFields = require("./form-fields");
 
 var _button = require("./button");
 
+var _label = _interopRequireWildcard(require("./label"));
+
+var _hint = _interopRequireDefault(require("./hint"));
+
 var _formField = _interopRequireDefault(require("./form-field"));
 
 var _makeEvent = _interopRequireDefault(require("../../lib/make-event"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -90,7 +96,7 @@ function (_FormField) {
     value: function render() {
       return _react.default.createElement("div", {
         className: this.className
-      }, this.picker, this.addNewField, this.addNewButton);
+      }, this.label, this.picker, this.addNewField, this.addNewButton);
     }
   }, {
     key: "className",
@@ -123,6 +129,23 @@ function (_FormField) {
     get: function get() {
       if (!this.addingNew) return null;
       return this.field;
+    }
+  }, {
+    key: "label",
+    get: function get() {
+      var _this$props = this.props,
+          label = _this$props.label,
+          hint = _this$props.hint,
+          required = _this$props.required;
+
+      if (label) {
+        return _react.default.createElement("div", {
+          className: "pbg-add-or-select-field-label"
+        }, _react.default.createElement(_label.default, {
+          type: _label.labelTypes.STRONG,
+          required: required
+        }, label), hint ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("br", null), _react.default.createElement(_hint.default, null, hint)) : null);
+      }
     }
   }, {
     key: "picker",

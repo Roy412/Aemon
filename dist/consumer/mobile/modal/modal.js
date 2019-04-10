@@ -54,9 +54,7 @@ function (_React$PureComponent) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Modal)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onBackClick", function () {
-      if (_this.props.onBackClick) {
-        return _this.props.onBackClick();
-      }
+      if (_this.props.onBackClick) return _this.props.onBackClick();
     });
 
     return _this;

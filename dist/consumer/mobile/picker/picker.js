@@ -103,6 +103,7 @@ function (_FormField) {
       return _react.default.createElement("select", {
         onChange: this.onChange,
         onBlur: this.onBlur,
+        onFocus: this.onFocus,
         value: this.value
       }, options.map(function (_ref, i) {
         var label = _ref.label,

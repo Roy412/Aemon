@@ -11,11 +11,17 @@ var _lodash = require("lodash");
 
 var _formFields = require("../form-fields");
 
+var _label = _interopRequireWildcard(require("../label"));
+
+var _hint = _interopRequireDefault(require("../hint"));
+
 var _formField = _interopRequireDefault(require("../form-field"));
 
 var _makeEvent = _interopRequireDefault(require("../../../lib/make-event"));
 
 require("./style.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53,7 +59,7 @@ function (_FormField) {
   _inherits(NewAddressField, _FormField);
 
   function NewAddressField() {
-    var _getPrototypeOf2;
+    var _getPrototypeOf2, _defineProperty2;
 
     var _this;
 
@@ -66,6 +72,14 @@ function (_FormField) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(NewAddressField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-form-field pbg-new-address-field');
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", (_defineProperty2 = {}, _defineProperty(_defineProperty2, "".concat(STREET_ADDRESS, "Touched"), false), _defineProperty(_defineProperty2, "".concat(CITY, "Touched"), false), _defineProperty(_defineProperty2, "".concat(STATE, "Touched"), false), _defineProperty(_defineProperty2, "".concat(POSTAL_CODE, "Touched"), false), _defineProperty(_defineProperty2, "".concat(COUNTRY, "Touched"), false), _defineProperty2));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onBlur", function (ev, fieldName) {
+      _this.setState(_defineProperty({}, "".concat(fieldName, "Touched"), true), function () {
+        if (_this.adaptedProps.onBlur) _this.adaptedProps.onBlur(ev);
+      });
+    });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateValue", function (value) {
       var newValue = _objectSpread({}, _this.currentValue, value);
@@ -84,9 +98,11 @@ function (_FormField) {
   }, {
     key: "extractError",
     value: function extractError(fieldName) {
-      var error = this.adaptedProps.error;
-      if (!error) return;
-      return error[fieldName];
+      var forceDisplay = (0, _lodash.get)(this.adaptedProps, 'forceErrorDisplay', false);
+      var errorMessage = (0, _lodash.get)(this.adaptedProps, "error.".concat(fieldName));
+      if (errorMessage && forceDisplay) return errorMessage;
+      if (!errorMessage || !this.state["".concat(fieldName, "Touched")]) return;
+      return errorMessage;
     }
   }, {
     key: "textFieldFor",
@@ -101,9 +117,8 @@ function (_FormField) {
         onChange: function onChange(ev) {
           return _this2.updateValue(_defineProperty({}, fieldName, ev.target.value));
         },
-        onFocus: this.onFocus,
         onBlur: function onBlur() {
-          return _this2.onBlur((0, _makeEvent.default)(_this2.currentValue));
+          return _this2.onBlur((0, _makeEvent.default)(_this2.currentValue), fieldName);
         }
       });
     }
@@ -114,7 +129,7 @@ function (_FormField) {
 
       return _react.default.createElement("div", {
         className: this.className
-      }, this.textFieldFor(STREET_ADDRESS), this.textFieldFor(CITY), this.textFieldFor(STATE), this.textFieldFor(POSTAL_CODE), _react.default.createElement(_formFields.Picker, {
+      }, this.label, this.textFieldFor(STREET_ADDRESS), this.textFieldFor(CITY), this.textFieldFor(STATE), this.textFieldFor(POSTAL_CODE), _react.default.createElement(_formFields.Picker, {
         name: COUNTRY,
         options: this.countryOptions,
         value: this.currentValue[COUNTRY],
@@ -122,6 +137,9 @@ function (_FormField) {
         error: this.extractError(COUNTRY),
         onChange: function onChange(ev) {
           return _this3.updateValue(_defineProperty({}, COUNTRY, ev.target.value));
+        },
+        onBlur: function onBlur() {
+          return _this3.onBlur((0, _makeEvent.default)(_this3.currentValue), COUNTRY);
         }
       }));
     }
@@ -139,6 +157,18 @@ function (_FormField) {
     key: "currentValue",
     get: function get() {
       return this.adaptedProps.value || {};
+    }
+  }, {
+    key: "label",
+    get: function get() {
+      if (this.props.label) {
+        return _react.default.createElement("div", {
+          className: "pbg-new-address-field-label-and-hint"
+        }, _react.default.createElement(_label.default, {
+          type: _label.labelTypes.STRONG,
+          required: this.props.required
+        }, this.props.label), this.props.hint ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("br", null), _react.default.createElement(_hint.default, null, this.props.hint)) : null);
+      }
     }
   }]);
 
