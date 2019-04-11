@@ -57,7 +57,7 @@ function (_TextField) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "baseClassName", 'pbg-consumer-mobile pbg-form-field pbg-text-field pbg-text-area');
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "ref", _react.default.createRef());
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "el", _react.default.createRef());
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       style: {
@@ -68,30 +68,35 @@ function (_TextField) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onTextChange", function (value) {
       _this.onChange(value);
 
-      setTimeout(function () {
-        _this.setState({
-          style: {
-            height: 'auto'
-          }
-        }, function () {
-          _this.setState({
-            style: {
-              height: "".concat(_this.ref.current.scrollHeight, "px")
-            }
-          });
-        });
-      }, 0);
+      _this.resetHeight();
     });
 
     return _this;
   }
 
   _createClass(TextArea, [{
+    key: "resetHeight",
+    value: function resetHeight() {
+      var _this2 = this;
+
+      this.setState({
+        style: {
+          height: 'auto'
+        }
+      }, function () {
+        _this2.setState({
+          style: {
+            height: "".concat(_this2.el.current.scrollHeight, "px")
+          }
+        });
+      });
+    }
+  }, {
     key: "input",
     get: function get() {
       return _react.default.createElement("textarea", {
         rows: 1,
-        ref: this.ref,
+        ref: this.el,
         onBlur: this.onBlur,
         onChange: this.onTextChange,
         onFocus: this.onFocus,
