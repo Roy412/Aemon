@@ -63,7 +63,7 @@ function (_React$PureComponent) {
     value: function render() {
       return _react.default.createElement("div", {
         className: this.className
-      }, _react.default.createElement("div", {
+      }, this.props.heading && _react.default.createElement("div", {
         className: "pbg-contributor-card-heading"
       }, this.props.heading), _react.default.createElement("div", {
         className: "pbg-contributor-card-body"
