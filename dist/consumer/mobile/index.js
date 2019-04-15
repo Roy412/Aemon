@@ -25,6 +25,8 @@ var _contributorCard = _interopRequireDefault(require("./contributor-card"));
 
 var _addComment = _interopRequireDefault(require("./add-comment"));
 
+var _noAccountWarning = _interopRequireDefault(require("./no-account-warning"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -61,7 +63,8 @@ var mobile = {
   SegmentedControl: _segmentedControl.default,
   Modal: _modal.default,
   ContributorCard: _contributorCard.default,
-  AddComment: _addComment.default
+  AddComment: _addComment.default,
+  NoAccountWarning: _noAccountWarning.default
 };
 var _default = mobile;
 exports.default = _default;
