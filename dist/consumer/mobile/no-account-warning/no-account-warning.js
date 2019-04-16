@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.NoAccountWarning = void 0;
+exports.default = exports.NoAccountWarning = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -41,3 +41,6 @@ var className = function className(props) {
   if (props.type && classNames[props.type]) return "".concat(base, " ").concat(classNames[props.type]);
   return base;
 };
+
+var _default = NoAccountWarning;
+exports.default = _default;
