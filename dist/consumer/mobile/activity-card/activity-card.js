@@ -38,12 +38,9 @@ var UserCommentCard = function UserCommentCard(props) {
     className: "pbg-user-comment-card"
   }, _react.default.createElement("div", {
     className: "d-flex"
-  }, _react.default.createElement(_avatar.default, {
-    src: props.userAvatar,
-    userId: props.userId
-  }), _react.default.createElement("div", {
+  }, _react.default.createElement(_avatar.default, props), _react.default.createElement("div", {
     className: "flex-grow-1"
-  }, _react.default.createElement(_heading.H3, null, props.userName))), _react.default.createElement("p", null, props.comment));
+  }, _react.default.createElement(_heading.H3, null, props.title))), _react.default.createElement("p", null, props.comment));
 };
 
 exports.UserCommentCard = UserCommentCard;
