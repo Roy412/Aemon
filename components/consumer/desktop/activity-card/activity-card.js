@@ -4,23 +4,18 @@ import moment from 'moment';
 
 import ActivityThumbnail from '../activity-thumbnail';
 
-import './style.css';
+import './style.scss';
 
 class ActivityCard extends React.PureComponent {
   static propTypes = {
     type: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
-  }
-
-  static defaultProps = {
-    type: null,
-    title: null,
-    time: null,
-  }
+    children: PropTypes.node.isRequired,
+  };
 
   get time() {
-    return moment(this.props.time).format("hh:mm A");
+    return moment(this.props.time).format('hh:mm A');
   }
 
   render() {
@@ -31,9 +26,7 @@ class ActivityCard extends React.PureComponent {
         <div className="activity-card-text">
           <p className="activity-card-title">{this.props.title}</p>
           <p className="activity-card-time">{this.time}</p>
-          <div className="activity-card-description">
-            {this.props.children}
-          </div>
+          <div className="activity-card-description">{this.props.children}</div>
         </div>
       </div>
     );

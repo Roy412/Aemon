@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '../text-field';
 import Hint, { hintTypes } from '../hint';
-import './style.css';
+import './style.scss';
 
 class TextArea extends TextField {
   baseClassName = 'pbg-consumer-mobile pbg-form-field pbg-text-field pbg-text-area';
@@ -12,26 +12,29 @@ class TextArea extends TextField {
     style: {
       height: 'auto',
     },
-  }
+  };
 
   resetHeight() {
-    this.setState({
-      style: {
-        height: 'auto',
-      }
-    }, () => {
-      this.setState({
+    this.setState(
+      {
         style: {
-          height: `${this.el.current.scrollHeight}px`,
-        }
-      });
-    });
+          height: 'auto',
+        },
+      },
+      () => {
+        this.setState({
+          style: {
+            height: `${this.el.current.scrollHeight}px`,
+          },
+        });
+      }
+    );
   }
 
-  onTextChange = (value) => {
+  onTextChange = value => {
     this.onChange(value);
     this.resetHeight();
-  }
+  };
 
   get textAreaPlaceholder() {
     if (this.focused) return null;
@@ -50,10 +53,10 @@ class TextArea extends TextField {
         value={this.adaptedProps.value}
         placeholder={this.textAreaPlaceholder}
         style={this.state.style}
+        disabled={this.adaptedProps.disabled}
       />
     );
   }
-
 }
 
 export { TextArea };

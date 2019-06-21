@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500|Roboto+Condensed);
-
 // Color palette
 $almost-white: #f3f3f3;
 $pbg-blue: #2EAFFF;
@@ -26,7 +24,36 @@ $facebook-color: #3b5998;
 $blue-gradient: linear-gradient(267deg, $pbg-blue-light, $pbg-blue);
 $blue-linear: linear-gradient(90deg, $pbg-blue 0%, $pbg-blue-light 196.67%);
 
+$cta-shadow: inset 0px -1px 0px rgba(17, 24, 30, 0.5);
+$cta-disabled-shadow: inset 0px -1px 0px rgba(17, 24, 30, 0.15);
+
+$grey-10: #F0F3F8;
+$grey-30: #D5DDE9;
+$grey-40: #BCC7D3;
+$grey-50: #8093A6;
 $grey-60: #526679;
+$grey-80: #24313E;
+
+$red-10: #F9DCDC;
+$red-60: #E02E2E;
+
+$yellow-10: #FFF3DD;
+$yellow-60: #FFBB33;
+
+$blue-10: #ECF4FF;
+$blue-20: #D9E9FF;
+$blue-30: #BBD7FF;
+$blue-40: #7DB3FF;
+$blue-50: #3388FF;
+$blue-60: #006AFF;
+$blue-70: #0055CC;
+$blue-80: #0044A3;
+$blue-90: #003682;
+$blue-100: #002B68;
+$blue-facebook: #3B5998;
+
+$green-10: #E2F4E6;
+$green-60: #53BC6A;
 
 // Font families
 $roboto: 'Roboto', serif;
@@ -35,10 +62,9 @@ $roboto: 'Roboto', serif;
 $large-font: 17px;
 $large-line-height: 25px;
 $regular-font: 14px;
-$regular-line-height: 20px;
+$regular-line-height: 21px;
 $small-line-height: 16px;
 $small-font: 12px;
-$small-line-height: 18px;
 
 // Icons
 $facebook-icon: url('../img/facebook-icon.svg');
@@ -47,6 +73,122 @@ $list-icon-white: url('../img/view-list-icon-white.svg');
 $pulse-icon-grey: url('../img/pulse-icon-grey.svg');
 $list-icon-grey: url('../img/view-list-icon-grey.svg');
 
+// Design System
+// Not all "components" are really components, some can be styles that get extended
+// or used to compose a new component.
+
+.pbg-clearfix {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+// Headings
+.pbg-desktop-heading-1 {
+  font-family: $roboto;
+  font-style: normal;
+  font-weight: 300;
+  color: $grey-80;
+  font-size: 38px;
+  line-height: 48px;
+}
+
+.pbg-desktop-heading-2 {
+  font-family: $roboto;
+  font-style: normal;
+  font-weight: 300;
+  color: $grey-80;
+  font-size: 28px;
+  line-height: 38px;
+}
+
+.pbg-desktop-heading-3 {
+  font-family: $roboto;
+  font-style: normal;
+  color: $grey-80;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+// Labels
+.pbg-desktop-label-normal {
+  color: $grey-80;
+  font-family: $roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: $regular-font;
+  line-height: $regular-line-height;
+}
+
+.pbg-desktop-label-strong {
+  @extend .pbg-desktop-label-normal;
+  font-weight: bold;
+}
+
+.pbg-desktop-label-link {
+  @extend .pbg-desktop-label-normal;
+  color: $blue-60;
+}
+
+.pbg-desktop-label-error {
+  @extend .pbg-desktop-label-normal;
+  color: $red-60;
+}
+
+// Text
+.pbg-desktop-regular-text {
+  @extend .pbg-desktop-label-normal;
+}
+
+.pbg-desktop-secondary-text {
+  @extend .pbg-desktop-regular-text;
+  color: $grey-60;
+}
+
+// Paragraph
+.pbg-desktop-paragraph {
+  @extend .pbg-desktop-regular-text;
+}
+
+.pbg-desktop-paragraph-secondary {
+  @extend .pbg-desktop-secondary-text;
+}
+
+// Small
+.pbg-desktop-small-text {
+  @extend .pbg-desktop-regular-text;
+  font-size: $small-font;
+  line-height: $small-line-height;
+}
+
+.pbg-desktop-small-link {
+  @extend .pbg-desktop-label-link;
+  font-size: $small-font;
+  line-height: $small-line-height;
+}
+
+.pbg-desktop-small-error {
+  @extend .pbg-desktop-label-error;
+  font-size: $small-font;
+  line-height: $small-line-height;
+}
+
+.pbg-desktop-small-strong {
+  @extend .pbg-desktop-label-strong;
+  font-size: $small-font;
+  line-height: $small-line-height;
+}
+
+// List
+.pbg-desktop-list-unordered {
+  @extend .pbg-desktop-label-normal;
+  list-style-image: url('../../desktop/img/pbg-list-bullet.svg');
+}
+
+.pbg-desktop-list-ordered {
+  @extend .pbg-desktop-label-normal;
+}
 
 .regular-text {
   color: $greyish-brown;
@@ -59,4 +201,22 @@ $list-icon-grey: url('../img/view-list-icon-grey.svg');
 
 .label-strong {
   font-weight: 500;
+}
+
+// Shadows
+.pbg-desktop-shadow-level-one {
+  box-shadow: 0px 3px 5px rgba(17, 24, 30, 0.05);
+}
+
+.pbg-desktop-shadow-level-two {
+  box-shadow: 0px 5px 10px rgba(17, 24, 30, 0.06);
+}
+
+.pbg-desktop-cta-disabled-shadow {
+  box-shadow: $cta-disabled-shadow;
+}
+
+.pbg-desktop-form-field-disabled {
+  @extend .pbg-desktop-secondary-text;
+  background: $grey-10;
 }

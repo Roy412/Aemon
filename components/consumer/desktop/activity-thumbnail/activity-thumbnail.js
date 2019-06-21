@@ -1,7 +1,7 @@
 import Avatar from '../avatar';
 import BaseActivityThumbnail from '../../shared/base-activity-thumbnail';
 
-import './style.css';
+import './style.scss';
 
 class ActivityThumbnail extends BaseActivityThumbnail {
   baseClassName = 'pbg-consumer-desktop pbg-activity-thumbnail';
@@ -11,4 +11,4 @@ class ActivityThumbnail extends BaseActivityThumbnail {
   }
 }
 
-export default ActivityThumbnail
+export default ActivityThumbnail;

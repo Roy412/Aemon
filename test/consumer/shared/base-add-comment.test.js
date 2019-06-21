@@ -4,20 +4,20 @@ import { shallow } from 'enzyme';
 
 import BaseAddComment from '../../../components/consumer/shared/base-add-comment';
 import Avatar from '../../../components/consumer/mobile/avatar';
-import {TextArea} from '../../../components/consumer/mobile/text-area';
+import { TextArea } from '../../../components/consumer/mobile/text-area';
 
 describe('BaseAddComment', () => {
   it('should throw an error when calling .avatar directly from the super class', () => {
     expect(() => {
-      const wrapper = shallow(<BaseAddComment />);
-      const instance = wrapper.instance();
-      return instance.avatar;
+      shallow(<BaseAddComment />);
     }).to.throw('Not implemented, Implement this method in a sub-class.');
   });
 
   it('should throw an error when calling .submitButton directly from the super class', () => {
     class WithAvatar extends BaseAddComment {
-      get avatar() { return this.renderAvatar(Avatar); }
+      get avatar() {
+        return this.renderAvatar(Avatar);
+      }
     }
 
     expect(() => {
@@ -29,8 +29,13 @@ describe('BaseAddComment', () => {
 
   it('should throw an error when calling .textArea directly from the super class', () => {
     class WithAvatarAndTextArea extends BaseAddComment {
-      get avatar() { return this.renderAvatar(Avatar); }
-      get textArea() { return this.renderTextArea(TextArea); }
+      get avatar() {
+        return this.renderAvatar(Avatar);
+      }
+
+      get textArea() {
+        return this.renderTextArea(TextArea);
+      }
     }
     expect(() => {
       const wrapper = shallow(<WithAvatarAndTextArea />);

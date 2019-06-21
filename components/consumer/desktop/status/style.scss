@@ -1,0 +1,48 @@
+@import '../../shared/scss/styleguide';
+
+.pbg-status {
+  display: flex;
+  align-items: flex-start;
+
+  .pbg-status-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+  }
+
+  .pbg-status-label {
+    @extend .pbg-desktop-small-strong;
+    margin-bottom: 4px;
+    display: flex;
+    height: 16px;
+  }
+
+  .pbg-status-question-mark:after {
+    content: url('../img/link-question-mark.svg');
+    position: relative;
+    margin-left: 5px;
+    height: 14px;
+    width: 14px;
+    top: 2px;
+  }
+
+  .pbg-status-value {
+    @extend .pbg-desktop-label-normal;
+    margin-bottom: 0;
+  }
+
+  .pbg-status-icon-container {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border: 1px solid $grey-30;
+    border-radius: 50%;
+
+    img {
+      height: 18px;
+      width: 18px;
+      margin-top: 10px;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+@import '../../shared/scss/styleguide';
+
+.pbg-consumer-desktop {
+  &.pbg-picker {
+    .pbg-picker-container {
+      position: relative;
+
+      button {
+        @extend .pbg-desktop-small-text;
+        position: relative;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        border: 0;
+        padding: 0;
+
+        &:focus {
+          outline: 0;
+        }
+
+        .pbg-picker-arrow {
+          background: url('../img/pbg-picker-arrow.svg') no-repeat center;
+          display: block;
+          pointer-events: none;
+        }
+      }
+
+      .pbg-picker-button {
+        @extend .regular-text;
+        background: $white;
+        border: 1px solid $grey-50;
+        border-radius: 4px;
+        min-width: 95px;
+        padding: 8px 25px 9px 7px;
+
+        .pbg-picker-arrow {
+          position: absolute;
+          width: 18px;
+          height: 18px;
+          right: 3px;
+          top: 11px;
+        }
+      }
+
+      .pbg-picker-text {
+        span {
+          margin-top: 2px;
+        }
+
+        .pbg-picker-arrow {
+          width: 18px;
+          height: 18px;
+          float: right;
+        }
+      }
+    }
+
+    &.pbg-form-field-error {
+      .pbg-picker-button {
+        border: 1px solid $red-60;
+      }
+
+      .pbg-picker-text {
+        color: $red-60;
+      }
+    }
+
+    &.pbg-form-field-disabled {
+      .pbg-picker-button,
+      .pbg-picker-text {
+        color: $grey-60;
+
+        .pbg-picker-arrow {
+          background: url('../img/pbg-picker-disabled-arrow.svg') no-repeat center;
+        }
+      }
+
+      .pbg-picker-button {
+        background: $grey-10;
+        border: 1px solid $grey-50;
+
+        .pbg-picker-arrow {
+          background-position: top center;
+        }
+      }
+    }
+
+    &.pbg-picker-big {
+      .pbg-picker-container {
+        button {
+          @extend .pbg-desktop-heading-3;
+          padding: 4px 25px 6px 7px;
+        }
+      }
+    }
+  }
+}

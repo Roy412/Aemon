@@ -1,0 +1,29 @@
+@import '../../shared/scss/styleguide';
+
+.pbg-consumer-desktop {
+  &.pbg-claim-toggle {
+    padding: 16px 16px 16px 16px;
+
+    &.pbg-container {
+      &.pbg-container-stroked {
+        box-sizing: content-box;
+      }
+
+      &.claim-toggle-required {
+        background: $yellow_10;
+      }
+
+      &.claim-toggle-disabled {
+        background: $grey-10;
+
+        .pbg-label {
+          color: $grey-60;
+        }
+
+        .pbg-paragraph {
+          color: $grey-60;
+        }
+      }
+    }
+  }
+}

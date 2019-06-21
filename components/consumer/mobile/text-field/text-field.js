@@ -1,11 +1,11 @@
 import React from 'react';
 import FormField from '../form-field';
 import { labelTypes } from '../label';
-import './style.css';
+import './style.scss';
 
 class TextField extends FormField {
+  baseClassName = 'pbg-consumer-mobile pbg-form-field pbg-text-field';
 
-  baseClassName = 'pbg-form-field pbg-text-field';
   baseType = 'text';
 
   get labelType() {
@@ -13,11 +13,8 @@ class TextField extends FormField {
     return labelTypes.ACTIVE;
   }
 
-  get type() { return this.adaptedProps.type || this.baseType };
-
-  get placeholder() {
-    const { required, label } = this.adaptedProps;
-    return !required ? label : label + '*';
+  get type() {
+    return this.adaptedProps.type || this.baseType;
   }
 
   get value() {

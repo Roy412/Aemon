@@ -6,7 +6,6 @@ import Hint from './hint';
 
 class FormField extends BaseFormField {
   get labelType() {
-    if (this.props.error) return labelTypes.ERROR;
     return labelTypes.base;
   }
 
@@ -17,6 +16,6 @@ class FormField extends BaseFormField {
   get hintOrError() {
     return this.renderHintOrError(Hint);
   }
-};
+}
 
 export default FormField;

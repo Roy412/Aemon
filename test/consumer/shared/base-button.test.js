@@ -5,9 +5,14 @@ import sinon from 'sinon';
 
 import Button from '../../../components/consumer/shared/button';
 
-export const shouldBehaveLikeButton = (wrapper) => {
+export const shouldBehaveLikeButton = wrapper => {
   beforeEach(() => {
-    wrapper.setProps({ children: 'A button', disabled: null, onClick: null, hint: null });
+    wrapper.setProps({
+      children: 'A button',
+      disabled: null,
+      onClick: null,
+      hint: null,
+    });
   });
 
   it('should render a button tag', () => {
@@ -20,14 +25,19 @@ export const shouldBehaveLikeButton = (wrapper) => {
 
   it('should pass extra classNames given', () => {
     const expected = 'extra-class';
-    wrapper.setProps({ className: expected});
+    wrapper.setProps({ className: expected });
     expect(wrapper.find('button').hasClass('pbg-button')).to.be.true;
     expect(wrapper.find('button').hasClass(expected)).to.be.true;
   });
 
   it('should add disabled class when disabled prop is present', () => {
-    wrapper.setProps({ disabled: true })
+    wrapper.setProps({ disabled: true });
     expect(wrapper.find('button').hasClass('disabled')).to.be.true;
+  });
+
+  it('should add submitting class when submitting prop is present', () => {
+    wrapper.setProps({ submitting: true });
+    expect(wrapper.find('button').hasClass('submitting')).to.be.true;
   });
 
   it('should render correct text', () => {
@@ -38,9 +48,21 @@ export const shouldBehaveLikeButton = (wrapper) => {
 
   it('should execute click handler if given', () => {
     const onClick = sinon.spy();
-    wrapper.setProps({ onClick });
+    wrapper.setProps({ onClick, disabled: false, submitting: false });
     wrapper.find('button').simulate('click');
     expect(onClick.calledOnce).to.be.true;
+  });
+
+  it('should activate it when mousedown', () => {
+    wrapper.find('button').simulate('mousedown');
+    expect(wrapper.state().active).to.be.true;
+  });
+
+  it('should deactivate it when mouseup', () => {
+    wrapper.setState({ active: true });
+    expect(wrapper.state().active).to.be.true;
+    wrapper.find('button').simulate('mouseup');
+    expect(wrapper.state().active).to.be.false;
   });
 
   it('should not execute click handler if given but disabled', () => {
@@ -50,9 +72,16 @@ export const shouldBehaveLikeButton = (wrapper) => {
     expect(onClick.calledOnce).to.be.false;
   });
 
+  it('should not execute click handler if given but submitting', () => {
+    const onClick = sinon.spy();
+    wrapper.setProps({ onClick, submitting: true });
+    wrapper.find('button').simulate('click');
+    expect(onClick.calledOnce).to.be.false;
+  });
+
   it('should not attempt to call click handler if not a function', () => {
     const onClick = '';
-    wrapper.setProps({ onClick  });
+    wrapper.setProps({ onClick });
     expect(() => wrapper.find('button').simulate('click')).not.to.throw();
   });
 

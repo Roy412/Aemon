@@ -1,10 +1,13 @@
 import React from 'react';
 import BaseButton, { CLASS_NAME } from '../../shared/button';
-import Hint from '../hint'
-import './style.css';
+import Hint from '../hint';
+
+import './style.scss';
 
 class BaseMobileButton extends BaseButton {
-  get hint() { return this.renderHint(Hint); }
+  get hint() {
+    return this.renderHint(Hint);
+  }
 }
 
 class PrimaryButton extends BaseMobileButton {
@@ -40,6 +43,4 @@ export const types = {
   FACEBOOK_SMALL: 'facebook-small',
 };
 
-export {
-  PrimaryButton, SecondaryButton, SmallButton, LinkButton, FacebookButton, SmallFacebookButton,
-};
+export { PrimaryButton, SecondaryButton, SmallButton, LinkButton, FacebookButton, SmallFacebookButton };

@@ -17,7 +17,7 @@ describe('TextArea', () => {
     expect(wrapper.hasClass('pbg-consumer-desktop')).to.be.true;
   });
 
-  it('should add pbg-form-field-focused class when focused', function (done) {
+  it('should add pbg-form-field-focused class when focused', function(done) {
     const wrapper = shallow(<TextArea />);
     wrapper.setProps({ focused: true }, () => {
       expect(wrapper.hasClass('pbg-form-field-focused')).to.be.true;
@@ -25,7 +25,7 @@ describe('TextArea', () => {
     });
   });
 
-  it('should remove pbg-form-field-focused class when not focused', function (done) {
+  it('should remove pbg-form-field-focused class when not focused', function(done) {
     const wrapper = shallow(<TextArea />);
     wrapper.setProps({ focused: true }, () => {
       wrapper.setProps({ focused: false }, () => {
@@ -65,9 +65,16 @@ describe('TextArea', () => {
   });
 
   it('should provide correct rows when value is larger than 100', () => {
-    const value = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare orci dolor, scelerisque posuere.';
+    const value =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare orci dolor, scelerisque posuere.';
     const wrapper = shallow(<TextArea value={value} />);
     expect(wrapper.instance().rows).to.equal(3);
+  });
+
+  it('should not show hint when simple is given', () => {
+    const hint = 'nope';
+    const wrapper = shallow(<TextArea hint={hint} simple />);
+    expect(wrapper.contains(<Hint>{hint}</Hint>)).to.be.false;
   });
 
   describe('With error', () => {

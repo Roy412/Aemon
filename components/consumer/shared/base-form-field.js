@@ -1,5 +1,6 @@
 import React from 'react';
 import { hintTypes } from './hint';
+import { labelTypes } from './label';
 
 class BaseFormField extends React.Component {
   baseClassName = 'pbg-form-field';
@@ -7,12 +8,16 @@ class BaseFormField extends React.Component {
   get className() {
     let resultingClassName = this.baseClassName;
 
-    if (this.error) {
+    if (this.error && !this.focused) {
       resultingClassName += ' pbg-form-field-error';
     }
 
     if (this.focused) {
       resultingClassName += ' pbg-form-field-focused';
+    }
+
+    if (this.disabled) {
+      resultingClassName += ' pbg-form-field-disabled';
     }
 
     return resultingClassName;
@@ -23,26 +28,43 @@ class BaseFormField extends React.Component {
     return this.props;
   }
 
-  get error() { return this.adaptedProps.error; }
+  get error() {
+    return this.adaptedProps.error;
+  }
 
-  get hint() { return this.adaptedProps.hint; }
+  get hint() {
+    return this.adaptedProps.hint;
+  }
 
-  get focused() { return this.adaptedProps.focused || !!this.error; }
+  get focused() {
+    return this.adaptedProps.focused;
+  }
 
-  get value() { return this.adaptedProps.value; }
+  get disabled() {
+    return this.adaptedProps.disabled;
+  }
 
-  get labelType() {
-    throw new Error('Not implemented, Implement this method in a sub-class.');
+  get value() {
+    return this.adaptedProps.value;
   }
 
   get label() {
     throw new Error('Not implemented, Implement this method in a sub-class.');
   }
 
+  get placeholder() {
+    const { required, label } = this.adaptedProps;
+    return !required ? label : `${label}*`;
+  }
+
   renderLabel(Label) {
     const { label } = this.props;
     const labelElement = (
-      <div><Label type={this.labelType} required={this.props.required}>{label}</Label></div>
+      <div>
+        <Label type={this.labelType} required={this.props.required}>
+          {label}
+        </Label>
+      </div>
     );
     return label ? labelElement : null;
   }
@@ -52,29 +74,37 @@ class BaseFormField extends React.Component {
   }
 
   renderHintOrError(Hint) {
-    if (this.error) return <div><Hint type={hintTypes.ERROR}>{this.error}</Hint></div>;
-    if (this.hint) return <div><Hint>{this.hint}</Hint></div>;
+    if (this.error) {
+      return (
+        <div>
+          <Hint type={hintTypes.ERROR}>{this.error}</Hint>
+        </div>
+      );
+    }
+    if (this.hint)
+      return (
+        <div>
+          <Hint>{this.hint}</Hint>
+        </div>
+      );
     return null;
   }
 
-  onFocus = (ev) => {
+  onFocus = ev => {
     if (this.adaptedProps.onFocus) return this.adaptedProps.onFocus(ev);
-  }
+  };
 
-  onChange = (value) => {
+  onChange = value => {
     if (this.adaptedProps.onChange) return this.adaptedProps.onChange(value);
-  }
+  };
 
-  onBlur = (value) => {
+  onBlur = value => {
     if (this.adaptedProps.onBlur) return this.adaptedProps.onBlur(value);
-  }
+  };
 
   render() {
-    return (
-      <div className={this.className}>
-      </div>
-    )
+    return <div className={this.className} />;
   }
-};
+}
 
 export default BaseFormField;

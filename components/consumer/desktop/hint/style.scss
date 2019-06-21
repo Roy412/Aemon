@@ -1,23 +1,26 @@
 @import '../../shared/scss/styleguide';
 
 .pbg-consumer-desktop {
-  span {
-    &.pbg-hint {
-      color: $cool-grey;
-      font-family: "Roboto Condensed";
-      font-style: normal;
-      font-weight: normal;
-      line-height: 16px;
-      font-size: 12px;
-    }
-  
+  &.pbg-hint {
+    @extend .pbg-desktop-secondary-text;
+    @extend .pbg-desktop-small-text;
     &.pbg-hint-error {
-      color: $coral-error;
+      @extend .pbg-desktop-small-error;
+      &:before {
+        content: url('../img/small-error-icon.svg');
+        margin-right: 4px;
+        position: relative;
+        top: 3px;
+      }
     }
-  
-    &.pbg-hint-clickable {
-      color: $clear-blue;
-      cursor: pointer;
+
+    &.pbg-hint-clickable, &.pbg-hint-link {
+      @extend .pbg-desktop-small-link;
+    }
+
+    &.pbg-hint-strong {
+      @extend .pbg-desktop-small-strong;
     }
   }
+
 }

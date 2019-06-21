@@ -1,14 +1,9 @@
 import React from 'react';
 
 import Label from '../../shared/label';
+
+import './style.scss';
+
 export * from '../../shared/label';
 
-import './style.css';
-
-export default (props) => {
-  return (
-    <div className="pbg-consumer-desktop">
-      <Label {...props} />
-    </div>
-  );
-};
+export default props => <Label {...props} className={`${props.className} pbg-consumer-desktop`} />;

@@ -1,28 +1,62 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const CLASS_NAME = 'pbg-button';
 
 class BaseButton extends React.PureComponent {
   baseClassName = CLASS_NAME;
 
+  static propTypes = {
+    disabled: PropTypes.bool,
+    submitting: PropTypes.bool,
+    className: PropTypes.string,
+    hint: PropTypes.string,
+    children: PropTypes.node,
+    onClick: PropTypes.func,
+  };
+
+  static defaultProps = {
+    disabled: false,
+    submitting: false,
+    className: null,
+    hint: null,
+    children: null,
+    onClick: null,
+  };
+
+  state = {
+    active: false,
+  };
+
   get buttonType() {
-    return !!this.props.onClick ? 'button' : 'submit';
+    return this.props.onClick ? 'button' : 'submit';
   }
 
   get className() {
-    const { disabled, className } = this.props;
-    const base = className ? `${this.baseClassName} ${className}` :  this.baseClassName;
-    return disabled ? base + ' disabled' : base;
+    const { disabled, className, submitting } = this.props;
+    const base = className ? `${this.baseClassName} ${className}` : this.baseClassName;
+    const disabledClass = disabled ? `${base} disabled` : base;
+    const submittingClass = submitting ? `${disabledClass} submitting` : disabledClass;
+    const activeClass = this.state.active ? `${submittingClass} pbg-button-active` : submittingClass;
+    return activeClass;
   }
 
   get hint() {
     throw new Error('Not implemented, Implement this method in a sub-class');
   }
 
-  onClick = (ev) => {
-    if (this.props.disabled) return;
-    if ((typeof this.props.onClick) === 'function') return this.props.onClick(ev);
-  }
+  activate = () => {
+    this.setState({ active: true });
+  };
+
+  deactivate = () => {
+    this.setState({ active: false });
+  };
+
+  onClick = ev => {
+    if (this.props.disabled || this.props.submitting) return;
+    if (typeof this.props.onClick === 'function') this.props.onClick(ev);
+  };
 
   renderHint(Hint) {
     if (this.props.hint) {
@@ -32,6 +66,7 @@ class BaseButton extends React.PureComponent {
         </div>
       );
     }
+    return null;
   }
 
   render() {
@@ -41,11 +76,15 @@ class BaseButton extends React.PureComponent {
           type={this.buttonType}
           className={this.className}
           onClick={this.onClick}
-          disabled={this.props.disabled}
+          onMouseDown={this.activate}
+          onMouseOut={this.deactivate}
+          onMouseUp={this.deactivate}
+          onBlur={this.deactivate}
+          disabled={this.props.disabled || this.props.submitting}
         >
           <span>{this.props.children}</span>
         </button>
-        { this.hint }
+        {this.hint}
       </div>
     );
   }

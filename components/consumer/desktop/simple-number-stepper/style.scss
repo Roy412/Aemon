@@ -1,0 +1,73 @@
+@import '../../shared/scss/styleguide';
+
+.pbg-consumer-desktop {
+  &.pbg-simple-number-stepper {
+    @extend .pbg-clearfix;
+    border: 1px solid $grey-50;
+    border-radius: 3px;
+
+    button {
+      border: 0;
+      color: $blue-60;
+      cursor: pointer;
+      float: left;
+      height: 38px;
+      padding: 0;
+      outline: 0;
+      width: 24px;
+    }
+
+    input {
+      @extend .pbg-desktop-heading-3;
+      background-color: $white;
+      border: 0;
+      float: left;
+      margin: 0;
+      text-align: center;
+      width: 42px;
+      height: 38px;
+    }
+
+    .has-danger {
+      input {
+        background-color: $coral-light;
+        border-color: $coral;
+      }
+    }
+
+    .decrement {
+      border-bottom-left-radius: 3px;
+      border-top-left-radius: 3px;
+      background: $grey-10 url('../img/pbg-minus-small.svg') center no-repeat;
+
+      &.disabled {
+        background: $grey-10 url('../img/pbg-minus-small-grey.svg') center no-repeat;
+      }
+    }
+
+    .increment {
+      border-bottom-right-radius: 3px;
+      border-top-right-radius: 3px;
+      background: $grey-10 url('../img/pbg-plus-small.svg') center no-repeat;
+
+      &.disabled {
+        background: $grey-10 url('../img/pbg-plus-small-grey.svg') center no-repeat;
+      }
+    }
+
+    [type='number']::-webkit-outer-spin-button,
+    [type='number']::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    [type='number'] {
+      -moz-appearance: textfield;
+      width: 40px;
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}

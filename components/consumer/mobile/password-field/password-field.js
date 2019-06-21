@@ -1,10 +1,11 @@
 import React from 'react';
 import { TextField } from '../text-field';
 import Hint, { hintTypes } from '../hint';
-import './style.css';
+import './style.scss';
 
 class PasswordField extends TextField {
   baseClassName = 'pbg-form-field pbg-text-field pbg-password-field';
+
   baseType = 'password';
 
   get hintOrError() {
@@ -28,7 +29,7 @@ class PasswordField extends TextField {
         <Hint>{this.hint}</Hint>
         {this.forgotPassword}
       </div>
-    )
+    );
   }
 
   get forgotPassword() {
@@ -38,7 +39,6 @@ class PasswordField extends TextField {
       </Hint>
     );
   }
-
 }
 
 export { PasswordField };
